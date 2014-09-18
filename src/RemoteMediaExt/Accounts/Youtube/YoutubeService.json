@@ -1,0 +1,30 @@
+{
+    "name": "Youtube",
+    "apiVersion": "2",
+    "description": "This API allows to connect with Vimeo web services",
+    "operations": {
+      "UserRequest": {
+        "httpMethod": "GET",
+        "uri": "users/{user_id}/uploads",
+        "summary": "Access the videos for a specific user",
+        "class": "WPRemoteMediaExt\\Guzzle\\Service\\Command\\OperationCommand",
+        "responseClass": "YoutubeOutput",
+        "parameters": {
+                "user_id": {
+                    "type": "string",
+                    "location": "uri",
+                    "description": "The user id you want.",
+                    "required": true
+                }
+            }
+      }
+    },
+    "models": {
+        "YoutubeOutput": {
+            "type": "object",
+            "additionalProperties": {
+                "location": "xml"
+            }
+        }
+    }
+}

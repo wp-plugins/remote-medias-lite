@@ -1,0 +1,227 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: RemoteMediasLite 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-18 16:36-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: node_modules/grunt-pot/test/fixtures/some-file.php:3
+msgid "I'm a translatable string."
+msgstr ""
+
+#: node_modules/grunt-pot/test/fixtures/some-other-file.php:4
+msgid "Me too"
+msgstr ""
+
+#: node_modules/grunt-pot/test/fixtures/some-other-file.php:7
+#, php-format
+msgid "I have %d apple"
+msgid_plural "I have %d apples"
+msgstr[0] ""
+msgstr[1] ""
+
+#. / TRANSLATORS: This should be translated as a shorthand for YEAR-MONTH-DAY using 4, 2 and 2 digits.
+#: node_modules/grunt-pot/test/fixtures/some-other-file.php:16
+msgid "yyyy-mm-dd"
+msgstr ""
+
+#: remote-medias-lite.php:41
+#, php-format
+msgid "%s Requirements failed. WP version must at least %s"
+msgstr ""
+
+#: remote-medias-lite.php:43
+#, php-format
+msgid "%s Requirements failed. PHP version must at least %s"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Dailymotion/ServiceDailymotionSimple.php:24
+msgid "Dailymotion Basic"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Dailymotion/ServiceDailymotionSimple.php:36
+#: src/RemoteMediaExt/Accounts/Vimeo/ServiceVimeoSimple.php:36
+#: src/RemoteMediaExt/Accounts/Youtube/ServiceYoutubeSimple.php:37
+#, php-format
+msgid "%1$s - Settings"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Vimeo/ServiceVimeoSimple.php:20
+msgid "Vimeo Basic"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Youtube/ServiceYoutubeSimple.php:24
+msgid "Youtube Basic"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:64
+msgid "Remote Libraries"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:65
+msgid "Remote Library"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:66
+msgctxt "Remote Library"
+msgid "Add New"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:67
+msgctxt "Remote Library"
+msgid "Add New Remote Library"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:68
+msgctxt "Remote Library"
+msgid "Edit Remote Library"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:69
+msgctxt "Remote Library"
+msgid "New Remote Library"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:70
+msgctxt "Remote Library"
+msgid "View Remote Library"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:71
+msgctxt "Remote Library"
+msgid "Search Remote Libraries"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:72
+msgctxt "Remote Library"
+msgid "No Remote Library found"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:73
+msgctxt "Remote Library"
+msgid "No Remote Library found in Trash"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:128
+msgid "New Menu Added"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:129
+#, php-format
+msgid ""
+"Add %sremote medias accounts%s here and access any medias directly from your "
+"media manager!"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:138
+msgid "Media Manager Extended"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:139
+#, php-format
+msgid ""
+"You can now access medias of %sremote accounts%s directly from the media "
+"manager. Check it out!"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:155
+msgid "Account Settings"
+msgstr ""
+
+#: views/admin/media-remote-attachment.php:27
+msgid "Remove"
+msgstr ""
+
+#: views/admin/media-remote-attachment.php:31
+msgid "Deselect"
+msgstr ""
+
+#: views/admin/media-remote-attachment.php:39
+msgid "Caption this image&hellip;"
+msgstr ""
+
+#: views/admin/media-remote-attachment.php:43
+msgid "Describe this video&hellip;"
+msgstr ""
+
+#: views/admin/media-remote-attachment.php:45
+msgid "Describe this audio file&hellip;"
+msgstr ""
+
+#: views/admin/media-remote-attachment.php:47
+msgid "Describe this media file&hellip;"
+msgstr ""
+
+#: views/admin/media-upload-dailymotion.php:11
+msgid "Upload videos directly to your DailyMotion account"
+msgstr ""
+
+#: views/admin/media-upload-dailymotion.php:13
+#: views/admin/media-upload-vimeo.php:13
+#: views/admin/media-upload-youtube.php:13
+msgid "Get the extension and start uploading &raquo;"
+msgstr ""
+
+#: views/admin/media-upload-dailymotion.php:16
+msgid ""
+"Add our Remote Media PRO extension for DailyMotion to unlock premium "
+"features."
+msgstr ""
+
+#: views/admin/media-upload-default.php:5
+msgid ""
+"Upgrade with an extension plugin to unlock amazing feature like direct upload"
+msgstr ""
+
+#: views/admin/media-upload-vimeo.php:11
+msgid "Upload videos directly to your Vimeo account"
+msgstr ""
+
+#: views/admin/media-upload-vimeo.php:16
+msgid ""
+"Add our remote media pro extension for Vimeo to unlock premium features."
+msgstr ""
+
+#: views/admin/media-upload-youtube.php:11
+msgid "Upload videos directly to your Youtube account"
+msgstr ""
+
+#: views/admin/media-upload-youtube.php:16
+msgid ""
+"Add our Remote Media PRO extension for Youtube to unlock premium features."
+msgstr ""
+
+#: views/admin/metaboxes/account-settings.php:21
+msgid "Remote Service"
+msgstr ""
+
+#: views/admin/metaboxes/dailymotion-simple-settings.php:16
+msgid "Dailymotion User ID"
+msgstr ""
+
+#: views/admin/metaboxes/dailymotion-simple-settings.php:18
+#: views/admin/metaboxes/vimeo-simple-settings.php:18
+#: views/admin/metaboxes/youtube-simple-settings.php:22
+msgid "Validate"
+msgstr ""
+
+#: views/admin/metaboxes/vimeo-simple-settings.php:16
+msgid "Vimeo User ID"
+msgstr ""
+
+#: views/admin/metaboxes/youtube-simple-settings.php:20
+msgid "YouTube User ID"
+msgstr ""

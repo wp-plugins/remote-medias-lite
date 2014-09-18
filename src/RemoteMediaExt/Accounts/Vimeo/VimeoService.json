@@ -1,0 +1,36 @@
+{
+    "name": "Vimeo",
+    "apiVersion": "2",
+    "description": "This API allows to connect with Vimeo web services",
+    "operations": {
+      "UserRequest": {
+        "httpMethod": "GET",
+        "uri": "{user_id}/{request}.json",
+        "summary": "Access the data for a specific user",
+        "class": "WPRemoteMediaExt\\Guzzle\\Service\\Command\\OperationCommand",
+        "responseClass": "VimeoOutput",
+        "parameters": {
+                "user_id": {
+                    "type": "string",
+                    "location": "uri",
+                    "description": "The data you want. The different request types are listed below",
+                    "required": true
+                },
+                "request": {
+                    "type": "string",
+                    "location": "uri",
+                    "description": "The data you want. Could be: info,videos,likes,appears_in,all_videos,subscriptions,albums,channels,groups",
+                    "required": true
+                }
+            }
+      }
+    },
+    "models": {
+        "VimeoOutput": {
+            "type": "object",
+            "additionalProperties": {
+                "location": "json"
+            }
+        }
+    }
+}

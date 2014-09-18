@@ -1,0 +1,1 @@
+jQuery(document).ready(function(a){a.each(pointersRML.pointers,function(){var b=this;a(b.targetId).pointer({content:b.content,position:b.position,close:function(){a.post(ajaxurl,{pointer:b.pointerId,action:"dismiss-wp-pointer"})}}).pointer("open")})});

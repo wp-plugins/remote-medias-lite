@@ -1,0 +1,36 @@
+.rm-upload-wrap .uploader-inline-content {
+  top: 10%;
+}
+
+.rm-upload-wrap p.no-mg-top {
+  margin-top: 0px;
+}
+
+.ocs-logo {
+  padding-top: 20px;
+}
+
+.ocs-logo small {
+  display: inline-block;
+}
+
+.ocs-logo img {
+  display: inline-block;
+  padding-top: 10px;
+}
+.spinner.ocs-inline-loading {
+    float: initial;
+    margin-top: -3px;
+}
+.ocs-2x {
+    font-size: 2em;
+}
+.ocs-3x {
+    font-size: 3em;
+}
+.ocs-green {
+    color: #7ad03a;
+}
+.ocs-red {
+    color: #a00;
+}

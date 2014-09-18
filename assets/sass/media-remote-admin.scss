@@ -1,0 +1,19 @@
+// Admin CSS for Media Remote plugins
+
+// CSS3 tool from compass
+@import "compass/css3";
+
+.rm-upload-wrap{}
+.rm-upload-wrap p.no-mg-top{
+	margin-top:0px;
+}
+.ocs-logo{
+	padding-top:20px;
+}
+.ocs-logo small{
+	display:inline-block;
+}
+.ocs-logo img{
+	display:inline-block;
+	padding-top:10px;
+}
