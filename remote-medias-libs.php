@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Remote Medias Library Extension
+Plugin Name: Remote Medias Libraries
 Plugin URI: http://onecodeshop.com/
-Description: This plugins seamlessly integrates 3rd party medias APIs to WP media manager
+Description: Integrates 3rd party medias to WP media manager
 Version: 1.0.0
-Author: Louis-Michel Raynauld
+Author: Team OneCodeShop.com
 Author URI: http://onecodeshop.com/
 */
 namespace WPRemoteMediaExt;
