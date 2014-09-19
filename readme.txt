@@ -1,4 +1,4 @@
-=== Remote Medias Lite ===
+=== Remote Medias Libraries ===
 Contributors: loumray
 Tags: youtube, vimeo, vimeo pro, dailymotion, API, Media Manager, Extension, Integration, direct upload, private videos, remote medias libraries
 Requires at least: 3.5
