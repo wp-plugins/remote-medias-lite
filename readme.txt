@@ -1,4 +1,4 @@
-=== Remote Medias Libraries ===
+=== Remote Media Libraries ===
 Contributors: loumray
 Tags: youtube, vimeo, vimeo pro, dailymotion, API, Media Manager, Extension, Integration, direct upload, private videos, remote medias libraries
 Requires at least: 3.5
@@ -7,13 +7,13 @@ Stable tag: 1.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Remote Medias Libraries gives you direct access to all medias accross the web directly from the Media Manager.
+Remote Media Libraries gives you direct access to all medias accross the web directly from the Media Manager.
 
 == Description ==
 
-Remote Medias Libraries gives you access to the content of your youtube, vimeo, dailymotion account directly into the media manager.
+Remote Media Libraries gives you access to the content of your youtube, vimeo, dailymotion account directly into the media manager.
 
-Remote Medias Libraries makes it possible to navigate and manage all your medias from all your favorite remote services directly from wordpress media manager.  
+Remote Media Libraries makes it possible to navigate and manage all your medias from all your favorite remote services directly from wordpress media manager.  
 
 A LOT of service will be added for direct integration. Send us you favorite service and we will integrate it FAST.
 
@@ -56,4 +56,3 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 
 == Screenshots ==
 1. Direct Youtube account videos from media manager
-2. Upload to a youtube account directly from media manager
