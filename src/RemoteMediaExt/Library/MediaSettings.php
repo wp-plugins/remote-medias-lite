@@ -44,6 +44,7 @@ class MediaSettings extends WPfilter
 
         foreach ($accounts as $account) {
             $remoteAccount = RemoteAccountFactory::create($account->ID);
+
             if ($remoteAccount->isValid()) {
                 $this->setting[] = array(
                     'id' => $account->ID,

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RemoteMediasLite 1.0.0\n"
+"Project-Id-Version: RemoteMediasLite 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 16:36-0400\n"
+"POT-Creation-Date: 2014-09-26 14:30-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,131 +16,264 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: node_modules/grunt-pot/test/fixtures/some-file.php:3
-msgid "I'm a translatable string."
-msgstr ""
-
-#: node_modules/grunt-pot/test/fixtures/some-other-file.php:4
-msgid "Me too"
-msgstr ""
-
-#: node_modules/grunt-pot/test/fixtures/some-other-file.php:7
+#: remote-medias-libs.php:41
 #, php-format
-msgid "I have %d apple"
-msgid_plural "I have %d apples"
-msgstr[0] ""
-msgstr[1] ""
-
-#. / TRANSLATORS: This should be translated as a shorthand for YEAR-MONTH-DAY using 4, 2 and 2 digits.
-#: node_modules/grunt-pot/test/fixtures/some-other-file.php:16
-msgid "yyyy-mm-dd"
+msgid ""
+"%s <strong>Requirements failed.</strong> WP version must <strong>at least "
+"%s</strong>. You are using version "
 msgstr ""
 
-#: remote-medias-lite.php:41
+#: remote-medias-libs.php:43
 #, php-format
-msgid "%s Requirements failed. WP version must at least %s"
+msgid ""
+"%s <strong>Requirements failed.</strong> PHP version must <strong>at least "
+"%s</strong>. You are using version "
 msgstr ""
 
-#: remote-medias-lite.php:43
-#, php-format
-msgid "%s Requirements failed. PHP version must at least %s"
-msgstr ""
-
-#: src/RemoteMediaExt/Accounts/Dailymotion/ServiceDailymotionSimple.php:24
-msgid "Dailymotion Basic"
-msgstr ""
-
-#: src/RemoteMediaExt/Accounts/Dailymotion/ServiceDailymotionSimple.php:36
-#: src/RemoteMediaExt/Accounts/Vimeo/ServiceVimeoSimple.php:36
-#: src/RemoteMediaExt/Accounts/Youtube/ServiceYoutubeSimple.php:37
-#, php-format
-msgid "%1$s - Settings"
-msgstr ""
-
-#: src/RemoteMediaExt/Accounts/Vimeo/ServiceVimeoSimple.php:20
-msgid "Vimeo Basic"
-msgstr ""
-
-#: src/RemoteMediaExt/Accounts/Youtube/ServiceYoutubeSimple.php:24
-msgid "Youtube Basic"
-msgstr ""
-
-#: src/RemoteMediaExt/FRemoteMediaExt.php:64
+#: src/RemoteMediaExt/AccountPostType.php:13
 msgid "Remote Libraries"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:65
+#: src/RemoteMediaExt/AccountPostType.php:14
 msgid "Remote Library"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:66
+#: src/RemoteMediaExt/AccountPostType.php:15
 msgctxt "Remote Library"
 msgid "Add New"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:67
+#: src/RemoteMediaExt/AccountPostType.php:16
 msgctxt "Remote Library"
 msgid "Add New Remote Library"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:68
+#: src/RemoteMediaExt/AccountPostType.php:17
 msgctxt "Remote Library"
 msgid "Edit Remote Library"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:69
+#: src/RemoteMediaExt/AccountPostType.php:18
 msgctxt "Remote Library"
 msgid "New Remote Library"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:70
+#: src/RemoteMediaExt/AccountPostType.php:19
 msgctxt "Remote Library"
 msgid "View Remote Library"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:71
+#: src/RemoteMediaExt/AccountPostType.php:20
 msgctxt "Remote Library"
 msgid "Search Remote Libraries"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:72
+#: src/RemoteMediaExt/AccountPostType.php:21
 msgctxt "Remote Library"
 msgid "No Remote Library found"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:73
+#: src/RemoteMediaExt/AccountPostType.php:22
 msgctxt "Remote Library"
 msgid "No Remote Library found in Trash"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:128
+#: src/RemoteMediaExt/AccountPostType.php:51
+msgid ""
+"Could not connect to remote Library. Please verify your remote library "
+"settings. Only valid libraries are added to the media manager."
+msgstr ""
+
+#: src/RemoteMediaExt/AccountPostType.php:72
+#: src/RemoteMediaExt/AccountPostType.php:73
+msgid "Remote library settings updated."
+msgstr ""
+
+#: src/RemoteMediaExt/AccountPostType.php:75
+#, php-format
+msgid "Remote library settings restored to revision from %s"
+msgstr ""
+
+#: src/RemoteMediaExt/AccountPostType.php:76
+msgid "Remote library settings published."
+msgstr ""
+
+#: src/RemoteMediaExt/AccountPostType.php:77
+msgid "Remote library settings saved."
+msgstr ""
+
+#: src/RemoteMediaExt/AccountPostType.php:78
+msgid "Remote library settings submitted."
+msgstr ""
+
+#: src/RemoteMediaExt/AccountPostType.php:80
+#, php-format
+msgid "Remote library settings scheduled for: <strong>%1$s</strong>."
+msgstr ""
+
+#: src/RemoteMediaExt/AccountPostType.php:82
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: src/RemoteMediaExt/AccountPostType.php:84
+msgid "Remote library settings draft updated."
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:82
+msgid "Thumbnail"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:83
+msgid "Medium"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:84
+msgid "Large"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:85
+msgid "Full Size"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:19
+msgid "Dailymotion Basic"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:38
+msgid "Dailymotion User ID"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:44
+msgid "Insert the Dailymotion User ID for this library"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Flickr/Service.php:18
+msgid "Flickr Basic"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Flickr/Service.php:44
+msgid "Flickr User NSID"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Flickr/Service.php:51
+msgid "Insert the Flickr User NSID for this library"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:22
+msgid "Vimeo Basic"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:42
+msgid "Vimeo User ID"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:48
+msgid "Insert the Vimeo User ID for this library"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Youtube/Service.php:23
+msgid "Youtube Basic"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Youtube/Service.php:42
+msgid "YouTube User ID"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Youtube/Service.php:48
+#: src/RemoteMediaExt/Accounts/Youtube/Service.php:62
+msgid "Insert the Youtube User ID for this library"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Youtube/Service.php:52
+msgid "Feed Type"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Youtube/Service.php:58
+msgid "Uploaded by this user"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Youtube/Service.php:59
+msgid "Favorites of this user"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:139
 msgid "New Menu Added"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:129
+#: src/RemoteMediaExt/FRemoteMediaExt.php:140
 #, php-format
 msgid ""
 "Add %sremote medias accounts%s here and access any medias directly from your "
 "media manager!"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:138
+#: src/RemoteMediaExt/FRemoteMediaExt.php:151
 msgid "Media Manager Extended"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:139
+#: src/RemoteMediaExt/FRemoteMediaExt.php:152
 #, php-format
 msgid ""
 "You can now access medias of %sremote accounts%s directly from the media "
 "manager. Check it out!"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:155
+#: src/RemoteMediaExt/FRemoteMediaExt.php:178
+msgid "Service Selection"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:191
 msgid "Account Settings"
 msgstr ""
 
+#: src/RemoteMediaExt/FRemoteMediaExt.php:202
+msgid "Status & Actions"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:220
+msgid "Remote Service"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:227
+msgid "Choose the type of service you want to connect."
+msgstr ""
+
+#: vendor/loumray/wpforms/src/ColorPicker.php:65
+msgid "Hex Value"
+msgstr ""
+
+#: vendor/loumray/wpforms/src/UploadImage.php:57
+msgid "Allowed Files"
+msgstr ""
+
+#: vendor/loumray/wpforms/src/UploadImage.php:80
+msgid "You do not have permission to upload files."
+msgstr ""
+
+#: vendor/loumray/wpforms/src/UploadImage.php:122
+#: vendor/loumray/wpforms/src/UploadLibrary.php:121
+msgid "No Image"
+msgstr ""
+
+#: vendor/loumray/wpforms/src/UploadImage.php:137
+msgid "Drop a file here or"
+msgstr ""
+
+#: vendor/loumray/wpforms/src/UploadImage.php:138
+#: vendor/loumray/wpforms/src/UploadImage.php:141
+msgid "Select File"
+msgstr ""
+
+#: vendor/loumray/wpforms/src/UploadImage.php:170
+msgid "Use Default Image"
+msgstr ""
+
+#: vendor/loumray/wpforms/src/UploadLibrary.php:44
+msgid "Select"
+msgstr ""
+
+#: vendor/loumray/wpforms/src/UploadLibrary.php:129
 #: views/admin/media-remote-attachment.php:27
 msgid "Remove"
 msgstr ""
@@ -166,24 +299,32 @@ msgid "Describe this media file&hellip;"
 msgstr ""
 
 #: views/admin/media-upload-dailymotion.php:11
+#: views/admin/media-upload-template.php:12
 msgid "Upload videos directly to your DailyMotion account"
 msgstr ""
 
 #: views/admin/media-upload-dailymotion.php:13
+#: views/admin/media-upload-flickr.php:13
+#: views/admin/media-upload-template.php:14
 #: views/admin/media-upload-vimeo.php:13
 #: views/admin/media-upload-youtube.php:13
 msgid "Get the extension and start uploading &raquo;"
 msgstr ""
 
 #: views/admin/media-upload-dailymotion.php:16
+#: views/admin/media-upload-template.php:17
 msgid ""
 "Add our Remote Media PRO extension for DailyMotion to unlock premium "
 "features."
 msgstr ""
 
-#: views/admin/media-upload-default.php:5
+#: views/admin/media-upload-flickr.php:11
+msgid "Upload files directly to your Flickr account"
+msgstr ""
+
+#: views/admin/media-upload-flickr.php:16
 msgid ""
-"Upgrade with an extension plugin to unlock amazing feature like direct upload"
+"Add our remote media pro extension for Flickr to unlock premium features."
 msgstr ""
 
 #: views/admin/media-upload-vimeo.php:11
@@ -204,24 +345,22 @@ msgid ""
 "Add our Remote Media PRO extension for Youtube to unlock premium features."
 msgstr ""
 
-#: views/admin/metaboxes/account-settings.php:21
-msgid "Remote Service"
+#: views/admin/metaboxes/status-actions.php:5
+msgid "Account Status:"
 msgstr ""
 
-#: views/admin/metaboxes/dailymotion-simple-settings.php:16
-msgid "Dailymotion User ID"
+#: views/admin/metaboxes/status-actions.php:29
+msgid "Working"
 msgstr ""
 
-#: views/admin/metaboxes/dailymotion-simple-settings.php:18
-#: views/admin/metaboxes/vimeo-simple-settings.php:18
-#: views/admin/metaboxes/youtube-simple-settings.php:22
+#: views/admin/metaboxes/status-actions.php:30
+msgid "Unknown"
+msgstr ""
+
+#: views/admin/metaboxes/status-actions.php:31
+msgid "Invalid"
+msgstr ""
+
+#: views/admin/metaboxes/status-actions.php:39
 msgid "Validate"
-msgstr ""
-
-#: views/admin/metaboxes/vimeo-simple-settings.php:16
-msgid "Vimeo User ID"
-msgstr ""
-
-#: views/admin/metaboxes/youtube-simple-settings.php:20
-msgid "YouTube User ID"
 msgstr ""

@@ -1,0 +1,73 @@
+{
+    "name": "Youtube",
+    "apiVersion": "2",
+    "description": "This API allows to connect with Vimeo web services",
+    "operations": {
+      "UserUploads": {
+        "httpMethod": "GET",
+        "uri": "users/{user_id}/uploads",
+        "summary": "Access the videos for a specific user",
+        "class": "WPRemoteMediaExt\\Guzzle\\Service\\Command\\OperationCommand",
+        "responseClass": "YoutubeOutput",
+        "parameters": {
+                "user_id": {
+                    "type": "string",
+                    "location": "uri",
+                    "description": "The user id you want.",
+                    "required": true
+                }
+            }
+      },
+      "UserFavorites": {
+        "httpMethod": "GET",
+        "uri": "users/{user_id}/favorites?v=2",
+        "summary": "Access the favorites of a specific user",
+        "class": "WPRemoteMediaExt\\Guzzle\\Service\\Command\\OperationCommand",
+        "responseClass": "YoutubeOutput",
+        "parameters": {
+                "user_id": {
+                    "type": "string",
+                    "location": "uri",
+                    "description": "The user id you want.",
+                    "required": true
+                }
+            }
+      },
+      "StandardMostPopular": {
+        "httpMethod": "GET",
+        "uri": "standardfeeds/most_popular",
+        "summary": "Access the favorites of a specific user",
+        "class": "WPRemoteMediaExt\\Guzzle\\Service\\Command\\OperationCommand",
+        "responseClass": "YoutubeOutput"
+      },
+      "LocalMostPopular": {
+        "httpMethod": "GET",
+        "uri": "standardfeeds/{regionID}/most_popular{categoryName}?v=2",
+        "summary": "Access the favorites of a specific user",
+        "class": "WPRemoteMediaExt\\Guzzle\\Service\\Command\\OperationCommand",
+        "responseClass": "YoutubeOutput",
+        "parameters": {
+                "regionID": {
+                    "type": "string",
+                    "location": "uri",
+                    "description": "The user id you want.",
+                    "required": true
+                },
+                "categoryName": {
+                    "type": "string",
+                    "location": "uri",
+                    "default": "",
+                    "description": "Format "
+                }
+            }
+      }
+    },
+    "models": {
+        "YoutubeOutput": {
+            "type": "object",
+            "additionalProperties": {
+                "location": "xml"
+            }
+        }
+    }
+}

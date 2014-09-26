@@ -17,23 +17,35 @@ wp.media.editor.send.attachment = function( props, attachment ) {
 	props = wp.media.string.props( props, attachment );
 
 	options = {
-		id:           attachment.id,
-		post_content: attachment.description,
-		post_excerpt: caption,
+		id: attachment.id,
+        title: attachment.title,
 		type: attachment.type,
-		subtype: attachment.subtype
+        subtype: attachment.subtype,
+        remotetype: attachment.remotetype,
+		accountId: attachment.accountId || 0,
+        remotedata: attachment.remotedata || [],
 	};
 
 	if ( props.linkUrl )
 		options.url = props.linkUrl;
 
-	html = wp.media.string.link( props );
-	options.post_title = props.title;
+	if ( 'image' === attachment.remotetype ) {
+        _.each({
+            align: 'align',
+            size:  'image-size',
+            alt:   'image_alt',
+        }, function( option, prop ) {
+            if ( props[ prop ] )
+                options[ option ] = props[ prop ];
+        });
+        options.width  = attachment.width || 0;
+        options.height = attachment.height || 0;
+        options.imgurl = attachment.url || options.url;
+    }
 
 	return wp.media.post( 'send-remote-attachment-to-editor', {
 		nonce:      rmlSendToEditorParams.nonce,
 		attachment: options,
-		html:       html,
 		post_id:    wp.media.view.settings.post.id
 	});
 };

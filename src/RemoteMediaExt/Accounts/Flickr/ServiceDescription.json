@@ -1,0 +1,27 @@
+{
+    "name": "Flickr",
+    "apiVersion": "2",
+    "description": "This API allows to connect with Flickr feed service based on https://www.flickr.com/services/feeds/",
+    "operations": {
+      "UserPublicPhotos": {
+        "httpMethod": "GET",
+        "uri": "photos_public.gne?id={user_id}&format={format}",
+        "summary": "Access the public photos of a specific user",
+        "class": "WPRemoteMediaExt\\Guzzle\\Service\\Command\\OperationCommand",
+        "parameters": {
+                "user_id": {
+                    "type": "string",
+                    "location": "uri",
+                    "description": "A single user ID. This specifies a user to fetch for.",
+                    "required": true
+                },
+                "format": {
+                    "type": "string",
+                    "location": "uri",
+                    "default": "php_serial",
+                    "description": "Format "
+                }
+            }
+      }
+    }
+}

@@ -1,39 +1,38 @@
 <?php
 namespace WPRemoteMediaExt\RemoteMediaExt;
 
-use WPRemoteMediaExt\RemoteMediaExt\Ajax\AjaxQueryValidation;
-use WPRemoteMediaExt\RemoteMediaExt\Accounts\Dailymotion\ServiceDailymotionSimple;
-use WPRemoteMediaExt\RemoteMediaExt\Accounts\Youtube\ServiceYoutubeSimple;
-use WPRemoteMediaExt\RemoteMediaExt\Library\MediaArraySettings;
-use WPRemoteMediaExt\RemoteMediaExt\Accounts\RemoteAccount;
-use WPRemoteMediaExt\RemoteMediaExt\Library\MediaTemplate;
-use WPRemoteMediaExt\RemoteMediaExt\Ajax\AjaxSendRemoteToEditor;
-use WPRemoteMediaExt\RemoteMediaExt\Medias\RemoteInsertToEditor;
-use WPRemoteMediaExt\RemoteMediaExt\Library\MediaSettings;
-use WPRemoteMediaExt\RemoteMediaExt\Ajax\AjaxQueryAttachments;
-use WPRemoteMediaExt\RemoteMediaExt\Library\MediaLibrarySection;
-use WPRemoteMediaExt\RemoteMediaExt\Ajax\AjaxUserInfo;
+use WPRemoteMediaExt\RemoteMediaExt\Accounts as RemoteService;
+use WPRemoteMediaExt\RemoteMediaExt\Accounts\AbstractRemoteService;
+use WPRemoteMediaExt\RemoteMediaExt\Accounts\AbstractRemoteAccount;
 use WPRemoteMediaExt\RemoteMediaExt\Accounts\RemoteServiceFactory;
-use WPRemoteMediaExt\RemoteMediaExt\Accounts\RemoteAccountFactory;
 use WPRemoteMediaExt\RemoteMediaExt\Accounts\MetaBoxService;
 use WPRemoteMediaExt\RemoteMediaExt\Accounts\MetaBoxServiceLoader;
-use WPRemoteMediaExt\RemoteMediaExt\Accounts\AbstractRemoteService;
-use WPRemoteMediaExt\RemoteMediaExt\Accounts\Vimeo\ServiceVimeoSimple;
-use WPRemoteMediaExt\RemoteMediaExt\Accounts\AbstractRemoteAccount;
-use WPRemoteMediaExt\WPCore\WPscriptAdmin;
-use WPRemoteMediaExt\WPCore\WPstyleAdmin;
-use WPRemoteMediaExt\RemoteMediaExt\Accounts\MetaBoxVideoSettings;
-use WPRemoteMediaExt\WPCore\View;
-use WPRemoteMediaExt\WPCore\WPposttype;
-use WPRemoteMediaExt\WPCore\WPfeature;
+
+use WPRemoteMediaExt\RemoteMediaExt\Ajax\AjaxQueryValidation;
+use WPRemoteMediaExt\RemoteMediaExt\Ajax\AjaxSendRemoteToEditor;
+use WPRemoteMediaExt\RemoteMediaExt\Ajax\AjaxQueryAttachments;
+use WPRemoteMediaExt\RemoteMediaExt\Ajax\AjaxUserInfo;
+
+use WPRemoteMediaExt\RemoteMediaExt\Library\MediaArraySettings;
+use WPRemoteMediaExt\RemoteMediaExt\Library\MediaTemplate;
+use WPRemoteMediaExt\RemoteMediaExt\Library\MediaSettings;
+use WPRemoteMediaExt\RemoteMediaExt\Library\MediaLibrarySection;
+
 use WPRemoteMediaExt\WPCore\admin\WPfeaturePointer;
 use WPRemoteMediaExt\WPCore\admin\WPfeaturePointerLoader;
+use WPRemoteMediaExt\WPCore\View;
+
+use WPRemoteMediaExt\WPCore\WPfeature;
+use WPRemoteMediaExt\WPCore\WPscriptAdmin;
+use WPRemoteMediaExt\WPCore\WPstyleAdmin;
+
+use WPRemoteMediaExt\WPForms\FieldSet;
 
 class FRemoteMediaExt extends WPfeature
 {
     public static $instance;
 
-    protected $version = '1.0.0';
+    protected $version = '1.1.0';
     protected $accountPostType;
     protected $remoteServices = array();
 
@@ -59,58 +58,47 @@ class FRemoteMediaExt extends WPfeature
     {
         $this->serviceSetting = new MediaArraySettings('remoteServiceSettings');
 
-        $args = array(
-            'labels' => array(
-                'name' => __('Remote Libraries', 'remote-medias-lite'),
-                'singular_label' => __('Remote Library', 'remote-medias-lite'),
-                'add_new' => _x('Add New', 'Remote Library', 'remote-medias-lite'),
-                'add_new_item' => _x('Add New Remote Library', 'Remote Library', 'remote-medias-lite'),
-                'edit_item' => _x('Edit Remote Library', 'Remote Library', 'remote-medias-lite'),
-                'new_item' => _x('New Remote Library', 'Remote Library', 'remote-medias-lite'),
-                'view_item' => _x('View Remote Library', 'Remote Library', 'remote-medias-lite'),
-                'search_items' => _x('Search Remote Libraries', 'Remote Library', 'remote-medias-lite'),
-                'not_found' => _x('No Remote Library found', 'Remote Library', 'remote-medias-lite'),
-                'not_found_in_trash' => _x('No Remote Library found in Trash', 'Remote Library', 'remote-medias-lite'),
-            ),
-            'public' => false,
-            'show_ui' => true,
-            'show_in_menu' => 'upload.php',
-            'capability_type' => 'page',
-            'hierarchical' => true,
-            'supports' => array('title')
-        );
+        $this->accountPostType = new AccountPostType();
 
-        $this->accountPostType = new WPposttype('rmlaccounts', $args);
         $this->hook($this->accountPostType);
 
-        $service = new ServiceVimeoSimple();
+        //Hook Vimeo Support
+        $service = new RemoteService\Vimeo\Service();
         $service->setBasePath($this->getBasePath());
-        $service->setBaseUrl($this->getBaseUrl());
         $service->setAccountPostType($this->accountPostType);
-        $service->init();
-        $this->addRemoteService($service);
         $this->hook($service);
-        $service = new ServiceYoutubeSimple();
-        $service->setBasePath($this->getBasePath());
-        $service->setBaseUrl($this->getBaseUrl());
-        $service->setAccountPostType($this->accountPostType);
-        $service->init();
         $this->addRemoteService($service);
-        $this->hook($service);
-        $service = new ServiceDailymotionSimple();
-        $service->setBasePath($this->getBasePath());
-        $service->setBaseUrl($this->getBaseUrl());
-        $service->setAccountPostType($this->accountPostType);
-        $service->init();
-        $this->addRemoteService($service);
-        $this->hook($service);
 
-        //TODO move into services?
+        //Hook Youtube Support
+        $service = new RemoteService\Youtube\Service();
+        $service->setBasePath($this->getBasePath());
+        $service->setAccountPostType($this->accountPostType);
+        $this->hook($service);
+        $this->addRemoteService($service);
+
+        //Hook Dailymotion Support
+        $service = new RemoteService\Dailymotion\Service();
+        $service->setBasePath($this->getBasePath());
+        $service->setAccountPostType($this->accountPostType);
+        $this->hook($service);
+        $this->addRemoteService($service);
+
+        //Hook Flickr Support
+        $service = new RemoteService\Flickr\Service();
+        $service->setBasePath($this->getBasePath());
+        $service->setAccountPostType($this->accountPostType);
+        $this->hook($service);
+        $this->addRemoteService($service);
+
+        //Hook ajax service for accounts validation
         $this->ajaxQueryValidation = new AjaxQueryValidation();
         $this->hook($this->ajaxQueryValidation);
 
+        //Hook ajax service for accounts attachments fetching
         $this->ajaxqueryAttachments = new AjaxQueryAttachments();
         $this->hook($this->ajaxqueryAttachments);
+
+        //Hook ajax service for accounts send to editor action
         $this->ajaxSendRemoteToEditor = new AjaxSendRemoteToEditor();
         $this->hook($this->ajaxSendRemoteToEditor);
 
@@ -123,8 +111,31 @@ class FRemoteMediaExt extends WPfeature
 
     public function initAdmin()
     {
+        $this->initPointers();
+
+        $this->initMetaboxes();
+
+        //MediaArraySettings
+        $this->hook($this->serviceSetting);
+
+        //Add Media List in MediaLibrary
+        $this->hook(new MediaSettings('remoteMediaAccounts'));
+
+        $this->hook(new MediaTemplate(new View($this->getViewsPath().'admin/media-remote-attachment.php')));
+        $this->addScript(new WPscriptAdmin(array('post.php' => array(), 'post-new.php' => array()), 'media-remote-ext', $this->getJsUrl().'media-remote-ext.min.js', $this->getJsUrl().'media-remote-ext.js', array('media-editor','media-views'), $this->version));
+        $this->addStyle(new WPstyleAdmin(array(), 'media-remote-admin-css', $this->getCssUrl().'media-remote-admin.min.css', $this->getCssUrl().'media-remote-admin.css', $deps = array(), $this->version));
+    }
+    
+    public function initTheme()
+    {
+
+    }
+
+    public function initPointers()
+    {
+        //New Menu Feature Pointer
         $this->fPointerAccounts = new WPfeaturePointer(
-            'rml_accounts_v'.str_replace('.', '', $this->version),
+            'rml_accounts_v100',
             '<h3>'.__('New Menu Added', 'remote-medias-lite').'</h3>'.
             '<p>'.sprintf(__('Add %sremote medias accounts%s here and access any medias directly from your media manager!', 'remote-medias-lite'), '<a href="'.$this->accountPostType->getAdminUrl().'">', '</a>').'</p>',
             '#menu-media',
@@ -133,8 +144,10 @@ class FRemoteMediaExt extends WPfeature
                 'align' => 'center'
             )
         );
+
+        //New Media Manager Extension Applied Feature Pointer
         $this->fPointerMediaManager = new WPfeaturePointer(
-            'rml_media_v'.str_replace('.', '', $this->version),
+            'rml_media_v100',
             '<h3>'.__('Media Manager Extended', 'remote-medias-lite').'</h3>'.
             '<p>'.sprintf(__('You can now access medias of %sremote accounts%s directly from the media manager. Check it out!', 'remote-medias-lite'), '<a href="'.$this->accountPostType->getAdminUrl().'">', '</a>').'</p>',
             '.insert-media',
@@ -148,37 +161,86 @@ class FRemoteMediaExt extends WPfeature
         $fpl->addPointer($this->fPointerMediaManager);
         $fpl->addPointer($this->fPointerAccounts);
         $this->hook($fpl);
+    }
 
+    public function initMetaboxes()
+    {
+        $this->addScript(new WPscriptAdmin(array('post.php' => array('post_type' => $this->accountPostType->getSlug()), 'post-new.php' => array('post_type' => $this->accountPostType->getSlug())), 'rmedias-query-test',$this->getJsUrl().'media-remote-query-test.min.js', $this->getJsUrl().'media-remote-query-test.js', array(), $this->version));
+        $this->addScript(new WPscriptAdmin(array('post.php' => array('post_type' => $this->accountPostType->getSlug()), 'post-new.php' => array('post_type' => $this->accountPostType->getSlug())), 'media-remote-account', $this->getJsUrl().'rml-account.min.js', $this->getJsUrl().'rml-account.js', array(), $this->version));
+        
+        //Main metabox for Account Service selection
         $metabox = new MetaBoxService(
-            new View($this->getViewsPath().'admin/metaboxes/account-settings.php'),
-            'remote_media_account_settings',
-            __('Account Settings', 'remote-medias-lite'),
+            new View(
+                $this->getViewsPath().'admin/metaboxes/account-settings.php',
+                array('fRemoteMediaExt' => $this) //view data
+            ),
+            'rml_service_selection',
+            __('Service Selection', 'remote-medias-lite'),
             $this->accountPostType->getSlug(),
             'normal',
             'high'
         );
         $this->hook(new MetaBoxServiceLoader($metabox));
 
-        $this->hook($this->serviceSetting);
+        $metabox = new MetaBoxService(
+            new View(
+                $this->getViewsPath().'admin/metaboxes/basic-settings.php',
+                array('services' => $this->getRemoteServices())
+            ),
+            'rml_account_settings',
+            __('Account Settings', 'remote-medias-lite'),
+            $this->accountPostType->getSlug(),
+            'normal',
+            'default'
+        );
+        $this->hook(new MetaBoxServiceLoader($metabox));
 
-        //Add Media List in MediaLibrary
-        $this->hook(new MediaSettings('remoteMediaAccounts'));
-
-        $this->hook(new MediaTemplate(new View($this->getViewsPath().'admin/media-upload-default.php')));
-        $this->hook(new MediaTemplate(new View($this->getViewsPath().'admin/media-remote-attachment.php')));
-        $this->addScript(new WPscriptAdmin(array('post.php' => array(), 'post-new.php' => array()), 'media-remote-ext', $this->getJsUrl().'media-remote-ext.min.js', $this->getJsUrl().'media-remote-ext.js', array('media-editor','media-views')));
-        $this->addScript(new WPscriptAdmin(array('post.php' => array('post_type' => $this->accountPostType->getSlug()), 'post-new.php' => array('post_type' => $this->accountPostType->getSlug())), 'media-remote-account', $this->getJsUrl().'rml-account.min.js', $this->getJsUrl().'rml-account.js', array()));
-        $this->addStyle(new WPstyleAdmin(array(), 'media-remote-admin-css', $this->getCssUrl().'media-remote-admin.min.css', $this->getCssUrl().'media-remote-admin.css'));
+        //Main metabox for Account Status and Action buttons
+        $metabox = new MetaBoxService(
+            new View($this->getViewsPath().'admin/metaboxes/status-actions.php'),
+            'remote_media_actions',
+            __('Status & Actions', 'remote-medias-lite'),
+            $this->accountPostType->getSlug(),
+            'side',//'normal', 'advanced', or 'side'
+            'high'//'high', 'core', 'default' or 'low'
+        );
+        $this->hook(new MetaBoxServiceLoader($metabox));
     }
 
-    public function initTheme()
+    public function getBasicFieldSet(AbstractRemoteAccount $account)
     {
+        $fieldSet = new FieldSet();
 
+        $services = array();
+        foreach($this->getRemoteServices() as $service) {
+            $services[$service->getSlug()] = $service->getName();
+        }
+
+        $field = array(
+            'label' => __("Remote Service", 'remote-medias-lite'),
+            'type' => 'Select',
+            'id' => 'remote_media_type',
+            'name' => 'account_meta[remote_account_type]',
+            'class' => 'all',
+            'options' => $services,
+            'value' => $account->get('type'),
+            'desc' => __("Choose the type of service you want to connect.", 'remote-medias-lite'),
+        );
+        $fieldSet->addField($field);
+
+        return $fieldSet;
     }
 
     public function uninstall()
     {
         $uid = get_current_user_id();
+
+        if (is_null($this->fPointerAccounts) || 
+            is_null($this->fPointerMediaManager) 
+        ) {
+            $this->initPointers();
+        }
+
         $this->fPointerAccounts->clearDismissed($uid);
         $this->fPointerMediaManager->clearDismissed($uid);
     }

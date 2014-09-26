@@ -7,6 +7,8 @@ class RemoteServiceFactory
 
     public static function create($class)
     {
+        $class = self::className($class);
+
         if (!class_exists($class)) {
             return null;
         }
@@ -22,7 +24,37 @@ class RemoteServiceFactory
         
     }
 
-    public static function addClass($type,$class)
+    public static function className($class) 
+    {
+        switch ($class) {
+            case '\WPRemoteMediaExt\RemoteMediaExt\Accounts\Dailymotion\ServiceDailymotionSimple':
+                $class = '\WPRemoteMediaExt\RemoteMediaExt\Accounts\Dailymotion\Service';
+                break;
+            case '\WPRemoteMediaExt\RemoteMediaExt\Accounts\Vimeo\ServiceVimeoSimple':
+                $class = '\WPRemoteMediaExt\RemoteMediaExt\Accounts\Vimeo\Service';
+                break;
+            case '\WPRemoteMediaExt\RemoteMediaExt\Accounts\Youtube\ServiceYoutubeSimple':
+                $class = '\WPRemoteMediaExt\RemoteMediaExt\Accounts\Youtube\Service';
+                break;
+            default:
+                return $class;
+        }
+
+        return $class;
+    }
+    public static function getDbClassName($classname)
+    {
+        return str_replace('\\','_',$classname);
+    }
+
+    public static function retrieveClassName($dbclassname)
+    {
+        $retrievedClass = str_replace('_','\\',$dbclassname);
+        $retrievedClass = self::className($retrievedClass);
+        return $retrievedClass;
+    }
+
+    public static function addClass($type, $class)
     {
         self::$classes[$type] = $class;
     }

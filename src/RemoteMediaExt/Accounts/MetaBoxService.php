@@ -53,24 +53,18 @@ class MetaBoxService extends WPmetabox
         $account = RemoteAccountFactory::create($post->ID);
 
         parent::action();
-        
-        // if (is_null($this->service)) {
-        //     parent::action();
-        // } elseif($account->hasService($this->service)) {
-        //     parent::action();
-        // }
     }
 
 
     public function view($post, $metabox)
     {
-        $data = array();
+        $data = $this->view->getData();
         $data['post'] = $post;
         $data['metabox'] = $metabox;
         $data['account'] = RemoteAccountFactory::create($post->ID);
         $data['account']->fetch();
 
-        $data['hidden_nonce'] = wp_nonce_field( $this->getNonceAction(), $this->getNonceName(), true, false );
+        $data['hidden_nonce'] = wp_nonce_field($this->getNonceAction(), $this->getNonceName(), true, false);
 
         $this->view->setData($data);
         $this->view->show();

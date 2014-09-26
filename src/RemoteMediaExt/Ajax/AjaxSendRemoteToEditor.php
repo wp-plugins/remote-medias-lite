@@ -2,10 +2,10 @@
 namespace WPRemoteMediaExt\RemoteMediaExt\Ajax;
 
 use WPRemoteMediaExt\WPCore\WPajaxCall;
+use WPRemoteMediaExt\RemoteMediaExt\Accounts\RemoteMediaFactory;
 
 class AjaxSendRemoteToEditor extends WPajaxCall
 {
-
     public function __construct()
     {
         parent::__construct('send-remote-attachment-to-editor', 'media-remote-ext', true, true);
@@ -15,25 +15,27 @@ class AjaxSendRemoteToEditor extends WPajaxCall
 
     public function callback($data)
     {
-        $html = $type = $subtype = "";
+        $jsattachment = wp_unslash($_POST['attachment']);
+        $html = "";
 
-        $id = 0;
-        // print_r($_REQUEST);
-        //type should be 'remote'
-        if (isset($_REQUEST['attachment']['id'])) {
-            $id = $_REQUEST['attachment']['id'];
-        }
-        //type should be 'remote'
-        if (isset($_REQUEST['attachment']['type'])) {
-          $type = $_REQUEST['attachment']['type'];
-        }
-        if (isset($_REQUEST['attachment']['subtype'])) {
-          $subtype = $_REQUEST['attachment']['subtype'];
-        }
-        if (isset($_REQUEST['attachment']['url'])) {
-          $html = ' [embed]'.$_REQUEST['attachment']['url'].'[/embed]';
+        if (empty($jsattachment['subtype']) || empty($jsattachment['remotedata'])){
+            wp_send_json_error();
         }
 
-        wp_send_json_success( $html );
+        $media = RemoteMediaFactory::create($jsattachment['subtype'], $jsattachment['remotedata']);
+
+        if (is_null($media)) {
+            if (empty($jsattachment['url'])) {
+                wp_send_json_error();
+            }
+
+            $html = '[embed]'.$jsattachment['url'].'[/embed]';
+            wp_send_json_success($html);
+        }
+
+        unset($jsattachment['remotedata']);
+        $html = $media->toEditorHtml($jsattachment);
+
+        wp_send_json_success($html);
     }
 }

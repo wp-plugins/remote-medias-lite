@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'WPRemoteMediaExt\\RemoteMediaExt\\' => array($baseDir . '/src'),
+    'WPForms\\' => array($vendorDir . '/loumray/wpforms/src'),
     'WPCore\\' => array($vendorDir . '/loumray/wpcore/src'),
 );

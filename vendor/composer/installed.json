@@ -1,111 +1,5 @@
 [
     {
-        "name": "loumray/wpcore",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/loumray/wpcore.git",
-            "reference": "2500788d1390a7e660edac010f26d40318ddf8b1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/loumray/wpcore/zipball/2500788d1390a7e660edac010f26d40318ddf8b1",
-            "reference": "2500788d1390a7e660edac010f26d40318ddf8b1",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "replace": {
-            "wpcore/forms": "self.version"
-        },
-        "time": "2014-09-18 20:15:34",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "WPCore\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Louis-Michel Raynauld",
-                "email": "louismichel@pweb.ca"
-            }
-        ],
-        "description": "Object Oriented core to simplify plugins and themes development for wordpress",
-        "homepage": "https://github.com/loumray/wpcore",
-        "keywords": [
-            "plugins",
-            "theme",
-            "wordpress"
-        ]
-    },
-    {
-        "name": "symfony/event-dispatcher",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "target-dir": "Symfony/Component/EventDispatcher",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/EventDispatcher.git",
-            "reference": "68ab3c3f50eae2b152075da722204d4de67f596f"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/68ab3c3f50eae2b152075da722204d4de67f596f",
-            "reference": "68ab3c3f50eae2b152075da722204d4de67f596f",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "require-dev": {
-            "psr/log": "~1.0",
-            "symfony/config": "~2.0",
-            "symfony/dependency-injection": "~2.0",
-            "symfony/stopwatch": "~2.2"
-        },
-        "suggest": {
-            "symfony/dependency-injection": "",
-            "symfony/http-kernel": ""
-        },
-        "time": "2014-07-28 13:20:53",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.6-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Symfony\\Component\\EventDispatcher\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Symfony Community",
-                "homepage": "http://symfony.com/contributors"
-            },
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            }
-        ],
-        "description": "Symfony EventDispatcher Component",
-        "homepage": "http://symfony.com"
-    },
-    {
         "name": "guzzle/guzzle",
         "version": "v3.8.1",
         "version_normalized": "3.8.1.0",
@@ -197,6 +91,158 @@
             "http client",
             "rest",
             "web service"
+        ]
+    },
+    {
+        "name": "loumray/wpcore",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/loumray/wpcore.git",
+            "reference": "3883c38cc2ae6c18e25eb797b6920e4dfacb967b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/loumray/wpcore/zipball/3883c38cc2ae6c18e25eb797b6920e4dfacb967b",
+            "reference": "3883c38cc2ae6c18e25eb797b6920e4dfacb967b",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "replace": {
+            "wpcore/forms": "self.version"
+        },
+        "time": "2014-09-22 17:42:13",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "WPCore\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Louis-Michel Raynauld",
+                "email": "louismichel@pweb.ca"
+            }
+        ],
+        "description": "Object Oriented core to simplify plugins and themes development for wordpress",
+        "homepage": "https://github.com/loumray/wpcore",
+        "keywords": [
+            "plugins",
+            "theme",
+            "wordpress"
+        ]
+    },
+    {
+        "name": "symfony/event-dispatcher",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Symfony/Component/EventDispatcher",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/EventDispatcher.git",
+            "reference": "bf53697836343c9bc5663649f5f094ede73c2d5c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/bf53697836343c9bc5663649f5f094ede73c2d5c",
+            "reference": "bf53697836343c9bc5663649f5f094ede73c2d5c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "psr/log": "~1.0",
+            "symfony/config": "~2.0",
+            "symfony/dependency-injection": "~2.0",
+            "symfony/stopwatch": "~2.2"
+        },
+        "suggest": {
+            "symfony/dependency-injection": "",
+            "symfony/http-kernel": ""
+        },
+        "time": "2014-09-22 11:59:59",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.6-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\EventDispatcher\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Symfony EventDispatcher Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "loumray/wpforms",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/loumray/wpforms.git",
+            "reference": "1d215e87c3b0506c4151c3d43a7c26180e49c648"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/loumray/wpforms/zipball/1d215e87c3b0506c4151c3d43a7c26180e49c648",
+            "reference": "1d215e87c3b0506c4151c3d43a7c26180e49c648",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "wpcore/forms": "dev-master"
+        },
+        "time": "2014-09-22 17:55:57",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "WPForms\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Louis-Michel Raynauld",
+                "email": "louismichel@pweb.ca"
+            }
+        ],
+        "description": "Advanced forms library for development in wordpress using a real object oriented approach",
+        "homepage": "https://github.com/loumray/wpforms",
+        "keywords": [
+            "Forms",
+            "plugins",
+            "theme",
+            "wordpress"
         ]
     }
 ]

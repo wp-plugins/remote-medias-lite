@@ -1,6 +1,6 @@
 === Remote Media Libraries ===
 Contributors: loumray
-Tags: youtube, vimeo, vimeo pro, dailymotion, API, Media Manager, Extension, Integration, direct upload, private videos, remote medias libraries
+Tags: youtube, vimeo, vimeo pro, dailymotion, API, Media Manager, Extension, Integration, direct upload, private videos, remote medias libraries,media explorer
 Requires at least: 3.5
 Tested up to: 4.0
 Stable tag: 1.0.0
@@ -11,9 +11,9 @@ Remote Media Libraries gives you direct access to all medias accross the web dir
 
 == Description ==
 
-Remote Media Libraries gives you access to the content of your youtube, vimeo, dailymotion account directly into the media manager.
+Remote Media Libraries gives you access to the your favorite content of youtube, vimeo, dailymotion, flickr directly into the media manager.
 
-Remote Media Libraries makes it possible to navigate and manage all your medias from all your favorite remote services directly from wordpress media manager.  
+The plugin makes it possible to navigate and manage all your medias from all your favorite remote services directly from wordpress media manager.  
 
 A LOT of service will be added for direct integration. Send us you favorite service and we will integrate it FAST.
 
@@ -24,20 +24,44 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 * Youtube
 * Vimeo
 * Dailymotion
+* Flickr
 
 = Upcoming Services =
 
 * Vimeo Pro (make your exclusive videos private right from WP admin)
-* instagram
+* Instagram
+* Tumblr
+* Photobucket
+* Twitter
 * Amazon S3 Services
 * Cloud files
-* flickr
+
+= Planned for Next Release =
+
+* Youtube Search & public feeds
+* Flickr Latest public feed and favorites 
+* Instagram Basic Beta support
 
 == Installation ==
 = Minimum Requirements =
 
 * WordPress 3.5 or greater
 * PHP version 5.3.3 or greater
+
+== Changelog ==
+
+= 1.1.0 =
+* Added Flickr Basic Support for photos & videos
+* Improved Remote Libraries settings panels
+* Fix a bug that occured if you activated on an unsupported version of PHP.
+
+= 1.0.0 =
+* Initial Release.
+
+== Upgrade Notice ==
+
+= 1.1.0 =
+Added Flickr Basic Support & Improved Remote Libraries Admin Section
 
 = Manual installation =
 

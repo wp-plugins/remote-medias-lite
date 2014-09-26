@@ -29,7 +29,7 @@ class AjaxQueryValidation extends WPajaxCall
             $return['last_valid_query'] = $account->get('last_valid_query');
         } else {
             $return['error'] = true;
-            $return['msq'] = 'Service type class '.stripslashes(esc_attr($_POST['service_class'])).' unknown';
+            $return['msg'] = 'Service type class '.stripslashes(esc_attr($_POST['service_class'])).' unknown';
         }
         
 

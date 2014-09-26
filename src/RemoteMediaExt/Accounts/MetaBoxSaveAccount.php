@@ -1,20 +1,20 @@
 <?php
 namespace WPRemoteMediaExt\RemoteMediaExt\Accounts;
 
+use WPRemoteMediaExt\WPCore\admin\WPadminNotice;
 use WPRemoteMediaExt\WPCore\admin\WPmetabox;
 use WPRemoteMediaExt\WPCore\admin\WPSaveMetabox;
 
+
 class MetaBoxSaveAccount extends WPSaveMetabox
 {
-
     public function action()
     {
         $post_id = func_get_arg(0);
         $post    = func_get_arg(1);
 
         $verify = parent::action($post_id, $post);
-        if(!$verify)
-        {
+        if (!$verify) {
           return;
         }
 
@@ -38,8 +38,14 @@ class MetaBoxSaveAccount extends WPSaveMetabox
         $account->set('remote_user_id', sanitize_text_field($_POST['account_meta'][$accountType]['remote_user_id']));
         $account->set('service_class', sanitize_text_field($_POST['account_meta'][$accountType]['service_class']));
 
-
         $account->save();
+
+        $isValid = $account->get('isValid');
+        if (!$isValid) {
+            $_REQUEST['rmlmsg'] = 1;
+        } elseif (isset($_REQUEST['rmlmsg'])) {
+            unset($_REQUEST['rmlmsg']);
+        }
     }
 
 }
