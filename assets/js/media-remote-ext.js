@@ -302,6 +302,30 @@ wp.media.view.RemoteAttachmentsBrowser = wp.media.view.AttachmentsBrowser.extend
 
         this.uploader.hide();
         this.views.add( this.uploader );
+    },
+    createSingle: function () {
+        var sidebar = this.sidebar,
+            single = this.options.selection.single(),
+            type = single.get('type'),
+            remotetype = single.get('remotetype');
+
+        if (type !== 'remote') {
+            return wp.media.view.AttachmentsBrowser.prototype.createSingle.apply( this, arguments );
+        }
+        //Set type from remote type to display same attachment display settings than native supported type
+
+        if (remotetype === 'image') {
+            single.set('type', remotetype);
+            wp.media.view.AttachmentsBrowser.prototype.createSingle.apply( this, arguments );
+            single.set('type', 'remote');
+        }
+        
+        wp.media.view.AttachmentsBrowser.prototype.createSingle.apply( this, arguments );
+        
+        // Show the sidebar on mobile
+        if ( this.model.id === 'remote-library-'+this.model.get('sectionid') ) {
+            sidebar.$el.addClass( 'visible' );
+        }
     }
 });
 var oldMediaFrameSelect = wp.media.view.MediaFrame.Select;

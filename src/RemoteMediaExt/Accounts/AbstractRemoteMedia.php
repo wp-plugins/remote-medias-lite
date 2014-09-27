@@ -50,13 +50,18 @@ abstract class AbstractRemoteMedia
             $title = $jsattachment['title'] ? 'title="'.esc_attr($jsattachment['title']).'" ' : '';
             $class = 'align' . esc_attr($align) .' size-' . esc_attr($size) . ' wp-remote-'.$jsattachment['remotetype'].' wp-service-'.$jsattachment['subtype'].'-'.$jsattachment['id'];
 
-            $html = '<a href="'.esc_attr($jsattachment['url']).'"  class="inpost">';
+            if (!empty($jsattachment['url'])) {
+                $html.= '<a href="'.esc_attr($jsattachment['url']).'"  class="inpost">';
+            }
+            
             $html.= '<img src="'.esc_attr($jsattachment['imgurl']).'" ';
             $html.= 'alt="'.esc_attr($alt).'" ';
             $html.=  $title;
             $html.=  $hwstring;
             $html.= 'class="' . $class . '" />';
-            $html.= '</a>';
+            if (!empty($jsattachment['url'])) {
+                $html.= '</a>';
+            }
 
             return $html;
         }

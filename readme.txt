@@ -1,6 +1,6 @@
 === Remote Media Libraries ===
 Contributors: loumray
-Tags: youtube, vimeo, vimeo pro, dailymotion, API, Media Manager, Extension, Integration, direct upload, private videos, remote medias libraries,media explorer
+Tags: youtube, vimeo, vimeo pro, dailymotion, flickr, API, Media Manager, Extension, Integration, direct upload, private videos, remote medias libraries, media explorer, embeds
 Requires at least: 3.5
 Tested up to: 4.0
 Stable tag: 1.1.0
@@ -42,12 +42,6 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 * Flickr Latest public feed and favorites 
 * Instagram Basic Beta support
 
-== Installation ==
-= Minimum Requirements =
-
-* WordPress 3.5 or greater
-* PHP version 5.3.3 or greater
-
 == Changelog ==
 
 = 1.1.0 =
@@ -63,6 +57,12 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 = 1.1.0 =
 Added Flickr Basic Support & Improved Remote Libraries Admin Section
 
+== Installation ==
+= Minimum Requirements =
+
+* WordPress 3.5 or greater
+* PHP version 5.3.3 or greater
+
 = Manual installation =
 
 1. Download the plugin file to your computer and unzip it
@@ -72,11 +72,17 @@ Added Flickr Basic Support & Improved Remote Libraries Admin Section
 = Configuration =
 
 1. Go to Medias -> Remote Librairies
-2. Click add New to Add an external medias source like youtube, vimeo or dailymotion.
+2. Click Add New to Add an external medias source like Youtube, Vimeo, Dailymotion or Flickr.
 3. Insert a Title, Select the remote service you would like to query.
 4. Insert your Service reserve ID, make sure it is valid, and publish it.
-5. A new section identified by the title you entered will be add in the Media Manager for each published and valid remote library.
+5. A new section identified by the title you entered will be added in the Media Manager for each published and valid remote library.
 6. Go to a post or page, click Add Media and select the library.  The content of the remote library should be available to insert into your post.  
 
 == Screenshots ==
-1. Direct Youtube account videos from media manager
+1. Adding remote libraries to media manager
+2. Validate your remote libraries settings
+3. Insert remote images with your swanted size setting, just like any other local images.
+4. Inserting multiple medium size images at once
+5. Inserting a large size image
+6. Direct Vimeo videos in media manager
+7. Embeds appears in editor since WP 4.0 

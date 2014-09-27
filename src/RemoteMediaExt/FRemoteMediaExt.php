@@ -32,7 +32,7 @@ class FRemoteMediaExt extends WPfeature
 {
     public static $instance;
 
-    protected $version = '1.1.0';
+    protected $version = '1.1.1';
     protected $accountPostType;
     protected $remoteServices = array();
 

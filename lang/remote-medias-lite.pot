@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RemoteMediasLite 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-26 14:30-0400\n"
+"POT-Creation-Date: 2014-09-27 13:11-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,35 +120,35 @@ msgstr ""
 msgid "Remote library settings draft updated."
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:82
+#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:87
 msgid "Thumbnail"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:83
+#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:88
 msgid "Medium"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:84
+#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:89
 msgid "Large"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:85
+#: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:90
 msgid "Full Size"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:19
+#: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:14
 msgid "Dailymotion Basic"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:38
+#: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:36
 msgid "Dailymotion User ID"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:44
+#: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:41
 msgid "Insert the Dailymotion User ID for this library"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Flickr/Service.php:18
+#: src/RemoteMediaExt/Accounts/Flickr/Service.php:14
 msgid "Flickr Basic"
 msgstr ""
 
@@ -156,45 +156,32 @@ msgstr ""
 msgid "Flickr User NSID"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Flickr/Service.php:51
+#: src/RemoteMediaExt/Accounts/Flickr/Service.php:50
 msgid "Insert the Flickr User NSID for this library"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:22
+#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:16
 msgid "Vimeo Basic"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:42
+#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:38
 msgid "Vimeo User ID"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:48
+#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:43
 msgid "Insert the Vimeo User ID for this library"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Youtube/Service.php:23
+#: src/RemoteMediaExt/Accounts/Youtube/Service.php:16
 msgid "Youtube Basic"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Youtube/Service.php:42
+#: src/RemoteMediaExt/Accounts/Youtube/Service.php:38
 msgid "YouTube User ID"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Youtube/Service.php:48
-#: src/RemoteMediaExt/Accounts/Youtube/Service.php:62
+#: src/RemoteMediaExt/Accounts/Youtube/Service.php:43
 msgid "Insert the Youtube User ID for this library"
-msgstr ""
-
-#: src/RemoteMediaExt/Accounts/Youtube/Service.php:52
-msgid "Feed Type"
-msgstr ""
-
-#: src/RemoteMediaExt/Accounts/Youtube/Service.php:58
-msgid "Uploaded by this user"
-msgstr ""
-
-#: src/RemoteMediaExt/Accounts/Youtube/Service.php:59
-msgid "Favorites of this user"
 msgstr ""
 
 #: src/RemoteMediaExt/FRemoteMediaExt.php:139
@@ -299,20 +286,17 @@ msgid "Describe this media file&hellip;"
 msgstr ""
 
 #: views/admin/media-upload-dailymotion.php:11
-#: views/admin/media-upload-template.php:12
 msgid "Upload videos directly to your DailyMotion account"
 msgstr ""
 
 #: views/admin/media-upload-dailymotion.php:13
 #: views/admin/media-upload-flickr.php:13
-#: views/admin/media-upload-template.php:14
 #: views/admin/media-upload-vimeo.php:13
 #: views/admin/media-upload-youtube.php:13
 msgid "Get the extension and start uploading &raquo;"
 msgstr ""
 
 #: views/admin/media-upload-dailymotion.php:16
-#: views/admin/media-upload-template.php:17
 msgid ""
 "Add our Remote Media PRO extension for DailyMotion to unlock premium "
 "features."
