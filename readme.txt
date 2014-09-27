@@ -36,6 +36,12 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 * Amazon S3 Services
 * Cloud files
 
+= Follow us! =
+
+* <a href="http://onecodeshop.com">onecodeshop.com</a>
+* <a href="https://facebook.com/onecodeshop">facebook.com/onecodeshop</a>
+* <a href="https://twitter.com/onecodeshop">twitter.com/onecodeshop</a>
+
 = Planned for Next Release =
 
 * Youtube Search & public feeds
