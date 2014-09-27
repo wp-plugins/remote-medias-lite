@@ -318,9 +318,10 @@ wp.media.view.RemoteAttachmentsBrowser = wp.media.view.AttachmentsBrowser.extend
             single.set('type', remotetype);
             wp.media.view.AttachmentsBrowser.prototype.createSingle.apply( this, arguments );
             single.set('type', 'remote');
+        } else {
+            wp.media.view.AttachmentsBrowser.prototype.createSingle.apply( this, arguments );
         }
         
-        wp.media.view.AttachmentsBrowser.prototype.createSingle.apply( this, arguments );
         
         // Show the sidebar on mobile
         if ( this.model.id === 'remote-library-'+this.model.get('sectionid') ) {

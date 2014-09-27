@@ -3,7 +3,7 @@
 Plugin Name: Remote Medias Libraries
 Plugin URI: http://onecodeshop.com/
 Description: Integrates 3rd party medias to WP media manager
-Version: 1.1.0
+Version: 1.1.1
 Author: Team OneCodeShop.com
 Author URI: http://onecodeshop.com/
 */

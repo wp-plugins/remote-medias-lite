@@ -49,6 +49,9 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 * Instagram Basic Beta support
 
 == Changelog ==
+= 1.1.1 =
+* Added Media Manager attachement sidebar for mobile
+* Now using WP native image attachements sidebar for remote images
 
 = 1.1.0 =
 * Added Flickr Basic Support for photos & videos
@@ -59,6 +62,8 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 * Initial Release.
 
 == Upgrade Notice ==
+= 1.1.1 =
+Better support for remote medias images
 
 = 1.1.0 =
 Added Flickr Basic Support & Improved Remote Libraries Admin Section
