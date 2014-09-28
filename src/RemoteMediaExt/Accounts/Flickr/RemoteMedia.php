@@ -2,6 +2,7 @@
 namespace WPRemoteMediaExt\RemoteMediaExt\Accounts\Flickr;
 
 use WPRemoteMediaExt\RemoteMediaExt\Accounts\AbstractRemoteMedia;
+
 /*
 * Flickr Media Class
 *
@@ -100,7 +101,7 @@ class RemoteMedia extends AbstractRemoteMedia
     public function toMediaManagerAttachment()
     {
         $attachment = array_merge(
-            $this->getBasicAttachment(), 
+            $this->getBasicAttachment(),
             array(
                 'id'          => basename($this->metadata['guid']),
                 'title'       => $this->metadata['title'],

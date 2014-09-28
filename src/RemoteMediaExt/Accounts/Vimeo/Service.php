@@ -7,8 +7,6 @@ use WPRemoteMediaExt\RemoteMediaExt\Library\MediaTemplate;
 use WPRemoteMediaExt\WPCore\View;
 use WPRemoteMediaExt\WPForms\FieldSet;
 
-
-
 class Service extends AbstractRemoteService
 {
     public function __construct()
@@ -48,14 +46,14 @@ class Service extends AbstractRemoteService
     public function validate()
     {
 
-      $params = array(
-          'user_id' => $this->account->get('remote_user_id'),
-          'request' => 'info'
-      );
-      $command = $this->client->getCommand('UserRequest', $params);
-      $response = $this->client->execute($command);
+        $params = array(
+            'user_id' => $this->account->get('remote_user_id'),
+            'request' => 'info'
+        );
+        $command = $this->client->getCommand('UserRequest', $params);
+        $response = $this->client->execute($command);
 
-      return $command->getResponse()->isSuccessful();
+        return $command->getResponse()->isSuccessful();
     }
 
     public function getUserInfo()
@@ -90,7 +88,7 @@ class Service extends AbstractRemoteService
 
         $attachments = array();
 
-        foreach($medias as $i => $media) {
+        foreach ($medias as $i => $media) {
             $remoteMedia = new RemoteMedia($media);
             $remoteMedia->setAccount($this->getAccount());
             $attachments[$i] = $remoteMedia->toMediaManagerAttachment();

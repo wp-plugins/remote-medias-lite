@@ -5,7 +5,6 @@ use WPRemoteMediaExt\WPCore\admin\WPadminNotice;
 use WPRemoteMediaExt\WPCore\admin\WPmetabox;
 use WPRemoteMediaExt\WPCore\admin\WPSaveMetabox;
 
-
 class MetaBoxSaveAccount extends WPSaveMetabox
 {
     public function action()
@@ -15,7 +14,7 @@ class MetaBoxSaveAccount extends WPSaveMetabox
 
         $verify = parent::action($post_id, $post);
         if (!$verify) {
-          return;
+            return;
         }
 
         $accountID   = absint($_POST['post_ID']);
@@ -47,5 +46,4 @@ class MetaBoxSaveAccount extends WPSaveMetabox
             unset($_REQUEST['rmlmsg']);
         }
     }
-
 }

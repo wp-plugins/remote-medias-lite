@@ -27,7 +27,7 @@ class RemoteMedia extends AbstractRemoteMedia
         
 
         $attachment = array_merge(
-            $this->getBasicAttachment(), 
+            $this->getBasicAttachment(),
             array(
                 'id'          => $this->metadata['youtubeid'],
                 'title'       => $this->metadata['title'],

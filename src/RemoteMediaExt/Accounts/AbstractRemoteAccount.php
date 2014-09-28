@@ -13,9 +13,9 @@ abstract class AbstractRemoteAccount
 
     protected $service;
 
-    public static function getType($id)
+    public static function getType($aid)
     {
-        $type = get_post_meta($id,'remote_account_type', true);
+        $type = get_post_meta($aid, 'remote_account_type', true);
 
         if (empty($type)) {
             return null;
@@ -23,9 +23,9 @@ abstract class AbstractRemoteAccount
         return $type;
     }
 
-    public function __construct($id = null, $type = null)
+    public function __construct($aid = null, $type = null)
     {
-        $this->localID = (int)$id;
+        $this->localID = (int)$aid;
         $this->type    = $type;
         $this->fetch();
     }
@@ -66,8 +66,8 @@ abstract class AbstractRemoteAccount
     {
         $this->validate();
 
-        $return = update_post_meta($this->localID,'remote_attr',$this->attributes);
-        $return = update_post_meta($this->localID,'remote_account_type',$this->type) && $return;
+        $return = update_post_meta($this->localID, 'remote_attr', $this->attributes);
+        $return = update_post_meta($this->localID, 'remote_account_type', $this->type) && $return;
 
         return $return;
     }
@@ -75,7 +75,7 @@ abstract class AbstractRemoteAccount
     public function setService(AbstractRemoteService $service)
     {
         $this->service = $service;
-        if(!is_null($this->service)) {
+        if (!is_null($this->service)) {
             $this->service->setAccount($this);
         }
         return $this;
@@ -86,7 +86,8 @@ abstract class AbstractRemoteAccount
         return $this->service;
     }
 
-    public function get($name) {
+    public function get($name)
+    {
         if ($name === null) {
             return $this->attributes;
         }
@@ -141,37 +142,36 @@ abstract class AbstractRemoteAccount
 
     public function validate()
     {
-      if (!($this->service instanceof AbstractRemoteService)) {
-          return false;
-      }
+        if (!($this->service instanceof AbstractRemoteService)) {
+            return false;
+        }
 
-      $return = array();
+        $return = array();
+        $return['validate'] = false;
+        
+        try {
+            $return['validate'] = $this->service->validate($this);
+        } catch (ClientErrorResponseException $e) {
+            $return['error'] = true;
+            $return['statuscode'] = $e->getResponse()->getStatusCode();
+            $return['msg']        = $e->getResponse()->getReasonPhrase();
+        } catch (\Exception $e) {
+            $return['error'] = true;
+            $return['statuscode'] = $e->getCode();
+            $return['msg']        = $e->getMessage();
+        }
 
-      $response = array();
-      $return['validate'] = false;
-      try {
-          $return['validate'] = $this->service->validate($this);
-      } catch(ClientErrorResponseException $e) {
-          $return['error'] = true;
-          $return['statuscode'] = $e->getResponse()->getStatusCode();
-          $return['msg']        = $e->getResponse()->getReasonPhrase();
-      } catch(\Exception $e) {
-          $return['error'] = true;
-          $return['statuscode'] = $e->getCode();
-          $return['msg']        = $e->getMessage();
-      }
+        $lastValidQuery = null;
 
-      $lastValidQuery = null;
+        if ($return['validate'] === true) {
+            $lastValidQuery =  $this->get('remote_user_id');
+            $this->set('isValid', true);
+        } else {
+            $this->set('isValid', false);
+        }
 
-      if ($return['validate'] === true) {
-          $lastValidQuery =  $this->get('remote_user_id');
-          $this->set('isValid', true);
-      } else {
-          $this->set('isValid', false);
-      }
+        $this->set('last_valid_query', $lastValidQuery);
 
-      $this->set('last_valid_query', $lastValidQuery);
-
-      return $return['validate'];
+        return $return['validate'];
     }
 }

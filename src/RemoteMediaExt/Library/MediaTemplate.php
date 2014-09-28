@@ -6,19 +6,17 @@ use WPRemoteMediaExt\WPCore\WPaction;
 
 class MediaTemplate extends WPaction
 {
+    protected $view;
 
-  protected $view;
+    public function __construct(View $view)
+    {
+        $this->view = $view;
 
-  public function __construct(View $view)
-  {
-    $this->view = $view;
+        parent::__construct('print_media_templates');
+    }
 
-    parent::__construct('print_media_templates');
-  }
-
-  public function action()
-  {
-    $this->view->show();
-  }
-
+    public function action()
+    {
+        $this->view->show();
+    }
 }

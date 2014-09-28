@@ -8,10 +8,10 @@ use WPRemoteMediaExt\WPCore\admin\WPmetaboxLoader;
 
 class MetaBoxServiceLoader extends WPmetaboxLoader
 {
-  protected $metabox;
+    protected $metabox;
 
-  public function __construct(WPmetabox $metabox)
-  {
-    parent::__construct($metabox, new MetaBoxSaveAccount());
-  }
+    public function __construct(WPmetabox $metabox)
+    {
+        parent::__construct($metabox, new MetaBoxSaveAccount());
+    }
 }

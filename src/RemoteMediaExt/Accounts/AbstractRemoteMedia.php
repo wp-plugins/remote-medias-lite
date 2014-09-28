@@ -130,5 +130,4 @@ abstract class AbstractRemoteMedia
      * @return array Array of attachment details.
      */
     abstract public function toMediaManagerAttachment();
-
 }

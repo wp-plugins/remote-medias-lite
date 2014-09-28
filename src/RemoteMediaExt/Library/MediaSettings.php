@@ -27,10 +27,10 @@ class MediaSettings extends WPfilter
         return $this->setting;
     }
 
-    function action()
+    public function action()
     {
         $settings = func_get_arg(0);
-        $post    = func_get_arg(1);
+        // $post    = func_get_arg(1);
 
         $args = array(
             'post_type' => 'rmlaccounts',
@@ -57,5 +57,4 @@ class MediaSettings extends WPfilter
 
         return $settings;
     }
-
 }

@@ -123,7 +123,7 @@ class FRemoteMediaExt extends WPfeature
 
         $this->hook(new MediaTemplate(new View($this->getViewsPath().'admin/media-remote-attachment.php')));
         $this->addScript(new WPscriptAdmin(array('post.php' => array(), 'post-new.php' => array()), 'media-remote-ext', $this->getJsUrl().'media-remote-ext.min.js', $this->getJsUrl().'media-remote-ext.js', array('media-editor','media-views'), $this->version));
-        $this->addStyle(new WPstyleAdmin(array(), 'media-remote-admin-css', $this->getCssUrl().'media-remote-admin.min.css', $this->getCssUrl().'media-remote-admin.css', $deps = array(), $this->version));
+        $this->addStyle(new WPstyleAdmin(array(), 'media-remote-admin-css', $this->getCssUrl().'media-remote-admin.min.css', $this->getCssUrl().'media-remote-admin.css', array(), $this->version));
     }
     
     public function initTheme()
@@ -165,7 +165,7 @@ class FRemoteMediaExt extends WPfeature
 
     public function initMetaboxes()
     {
-        $this->addScript(new WPscriptAdmin(array('post.php' => array('post_type' => $this->accountPostType->getSlug()), 'post-new.php' => array('post_type' => $this->accountPostType->getSlug())), 'rmedias-query-test',$this->getJsUrl().'media-remote-query-test.min.js', $this->getJsUrl().'media-remote-query-test.js', array(), $this->version));
+        $this->addScript(new WPscriptAdmin(array('post.php' => array('post_type' => $this->accountPostType->getSlug()), 'post-new.php' => array('post_type' => $this->accountPostType->getSlug())), 'rmedias-query-test', $this->getJsUrl().'media-remote-query-test.min.js', $this->getJsUrl().'media-remote-query-test.js', array(), $this->version));
         $this->addScript(new WPscriptAdmin(array('post.php' => array('post_type' => $this->accountPostType->getSlug()), 'post-new.php' => array('post_type' => $this->accountPostType->getSlug())), 'media-remote-account', $this->getJsUrl().'rml-account.min.js', $this->getJsUrl().'rml-account.js', array(), $this->version));
         
         //Main metabox for Account Service selection
@@ -201,8 +201,8 @@ class FRemoteMediaExt extends WPfeature
             'remote_media_actions',
             __('Status & Actions', 'remote-medias-lite'),
             $this->accountPostType->getSlug(),
-            'side',//'normal', 'advanced', or 'side'
-            'high'//'high', 'core', 'default' or 'low'
+            'side', //'normal', 'advanced', or 'side'
+            'high' //'high', 'core', 'default' or 'low'
         );
         $this->hook(new MetaBoxServiceLoader($metabox));
     }
@@ -212,7 +212,7 @@ class FRemoteMediaExt extends WPfeature
         $fieldSet = new FieldSet();
 
         $services = array();
-        foreach($this->getRemoteServices() as $service) {
+        foreach ($this->getRemoteServices() as $service) {
             $services[$service->getSlug()] = $service->getName();
         }
 
@@ -235,8 +235,8 @@ class FRemoteMediaExt extends WPfeature
     {
         $uid = get_current_user_id();
 
-        if (is_null($this->fPointerAccounts) || 
-            is_null($this->fPointerMediaManager) 
+        if (is_null($this->fPointerAccounts) ||
+            is_null($this->fPointerMediaManager)
         ) {
             $this->initPointers();
         }

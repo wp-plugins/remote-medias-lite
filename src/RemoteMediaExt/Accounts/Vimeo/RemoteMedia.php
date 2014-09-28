@@ -18,7 +18,7 @@ class RemoteMedia extends AbstractRemoteMedia
     public function toMediaManagerAttachment()
     {
         $attachment = array_merge(
-            $this->getBasicAttachment(), 
+            $this->getBasicAttachment(),
             array(
                 'id'          => $this->metadata['id'],
                 'title'       => $this->metadata['title'],

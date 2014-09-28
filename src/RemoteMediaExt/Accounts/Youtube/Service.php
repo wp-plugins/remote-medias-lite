@@ -58,7 +58,6 @@ class Service extends AbstractRemoteService
         // $this->fieldSet->addField($field);
     }
 
-    // public function 
     public function setAccount(AbstractRemoteAccount $account)
     {
         $this->account = $account;

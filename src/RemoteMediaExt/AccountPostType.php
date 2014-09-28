@@ -53,9 +53,10 @@ class AccountPostType extends WPposttype
         }
     }
 
-    public function addPostUpdateMsgParam($link) {
+    public function addPostUpdateMsgParam($link)
+    {
         $params = array();
-        if(isset($_REQUEST['rmlmsg'])) {
+        if (isset($_REQUEST['rmlmsg'])) {
             $params['rmlmsg'] = absint($_REQUEST['rmlmsg']);
         }
         $link = add_query_arg($params, $link);
@@ -69,19 +70,19 @@ class AccountPostType extends WPposttype
 
         $messages[$this->getSlug()] = array(
             0  => '', // Unused. Messages start at index 1.
-            1  => __( 'Remote library settings updated.', 'remote-medias-lite' ),
-            4  => __( 'Remote library settings updated.', 'remote-medias-lite' ),
+            1  => __('Remote library settings updated.', 'remote-medias-lite'),
+            4  => __('Remote library settings updated.', 'remote-medias-lite'),
             /* translators: %s: date and time of the revision */
-            5  => isset( $_GET['revision'] ) ? sprintf( __( 'Remote library settings restored to revision from %s', 'remote-medias-lite' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-            6  => __( 'Remote library settings published.', 'remote-medias-lite' ),
-            7  => __( 'Remote library settings saved.', 'remote-medias-lite' ),
-            8  => __( 'Remote library settings submitted.', 'remote-medias-lite' ),
+            5  => isset( $_GET['revision'] ) ? sprintf(__('Remote library settings restored to revision from %s', 'remote-medias-lite'), wp_post_revision_title((int) $_GET['revision'], false)) : false,
+            6  => __('Remote library settings published.', 'remote-medias-lite'),
+            7  => __('Remote library settings saved.', 'remote-medias-lite'),
+            8  => __('Remote library settings submitted.', 'remote-medias-lite'),
             9  => sprintf(
-                __( 'Remote library settings scheduled for: <strong>%1$s</strong>.', 'remote-medias-lite' ),
+                __('Remote library settings scheduled for: <strong>%1$s</strong>.', 'remote-medias-lite'),
                 // translators: Publish box date format, see http://php.net/date
-                date_i18n( __( 'M j, Y @ G:i', 'remote-medias-lite' ), strtotime( $post->post_date ) )
+                date_i18n(__('M j, Y @ G:i', 'remote-medias-lite'), strtotime($post->post_date))
             ),
-            10 => __( 'Remote library settings draft updated.', 'remote-medias-lite' )
+            10 => __('Remote library settings draft updated.', 'remote-medias-lite')
         );
 
         return $messages;

@@ -18,7 +18,9 @@ class AjaxSendRemoteToEditor extends WPajaxCall
         $jsattachment = wp_unslash($_POST['attachment']);
         $html = "";
 
-        if (empty($jsattachment['subtype']) || empty($jsattachment['remotedata'])){
+        if (empty($jsattachment['subtype']) ||
+            empty($jsattachment['remotedata'])
+        ) {
             wp_send_json_error();
         }
 

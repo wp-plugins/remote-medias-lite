@@ -51,7 +51,7 @@ class Service extends AbstractRemoteService
             'user_id' => $this->account->get('remote_user_id'),
             'fields'  => 'id,screenname,status,username'
         );
-        $command = $this->client->getCommand('UserRequest',$params);
+        $command = $this->client->getCommand('UserRequest', $params);
         $response = $this->client->execute($command);
 
         $response = $response->getAll();
@@ -71,7 +71,7 @@ class Service extends AbstractRemoteService
             'user_id' => $this->account->get('remote_user_id'),
             'fields'  => 'id,title,description,created_time,modified_time,owner,thumbnail_120_url,thumbnail_url,url'
         );
-        $command = $this->client->getCommand('UserRequest',$params);
+        $command = $this->client->getCommand('UserRequest', $params);
         $response = $this->client->execute($command);
 
         return $response;
@@ -83,7 +83,7 @@ class Service extends AbstractRemoteService
             'user_id' => $this->account->get('remote_user_id'),
             'fields'  => 'id,title,description,created_time,modified_time,owner,thumbnail_120_url,thumbnail_url,url'
         );
-        $command = $this->client->getCommand('UserVideosRequest',$params);
+        $command = $this->client->getCommand('UserVideosRequest', $params);
         $response = $this->client->execute($command);
 
         return $response;

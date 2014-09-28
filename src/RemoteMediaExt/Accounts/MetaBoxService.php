@@ -19,16 +19,16 @@ class MetaBoxService extends WPmetabox
 
     public function __construct(
         View $view,
-        $id,
+        $mbId,
         $title,
         $post_type,
-        $context  = 'advanced',
+        $context = 'advanced',
         $priority = 'default',
         $callback_args = null
     ) {
 
         parent::__construct(
-            $id,
+            $mbId,
             $title,
             $post_type,
             $context,
@@ -48,9 +48,9 @@ class MetaBoxService extends WPmetabox
 
     public function action()
     {
-        $postType = func_get_arg(0);
-        $post     = func_get_arg(1);
-        $account = RemoteAccountFactory::create($post->ID);
+        // $postType = func_get_arg(0);
+        // $post     = func_get_arg(1);
+        // $account = RemoteAccountFactory::create($post->ID);
 
         parent::action();
     }
@@ -69,5 +69,4 @@ class MetaBoxService extends WPmetabox
         $this->view->setData($data);
         $this->view->show();
     }
-
 }

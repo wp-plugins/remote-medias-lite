@@ -26,11 +26,11 @@ class AjaxUserInfo extends WPajaxCall
         try {
             $response = $service->GetUserInfo(esc_attr($_POST['user_id']));
             $return['data'] = $response->getAll();
-        } catch(ClientErrorResponseException $e) {
+        } catch (ClientErrorResponseException $e) {
             $return['error'] = true;
             $return['statuscode'] = $e->getResponse()->getStatusCode();
             $return['msg']        = $e->getResponse()->getReasonPhrase();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $return['error'] = true;
             $return['statuscode'] = $e->getCode();
             $return['msg'] = $e->getMessage();

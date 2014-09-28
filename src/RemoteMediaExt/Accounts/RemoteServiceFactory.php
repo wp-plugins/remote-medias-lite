@@ -3,7 +3,7 @@ namespace WPRemoteMediaExt\RemoteMediaExt\Accounts;
 
 class RemoteServiceFactory
 {
-    static $classes = array();
+    public static $classes = array();
 
     public static function create($class)
     {
@@ -24,7 +24,7 @@ class RemoteServiceFactory
         
     }
 
-    public static function className($class) 
+    public static function className($class)
     {
         switch ($class) {
             case '\WPRemoteMediaExt\RemoteMediaExt\Accounts\Dailymotion\ServiceDailymotionSimple':
@@ -44,12 +44,12 @@ class RemoteServiceFactory
     }
     public static function getDbClassName($classname)
     {
-        return str_replace('\\','_',$classname);
+        return str_replace('\\', '_', $classname);
     }
 
     public static function retrieveClassName($dbclassname)
     {
-        $retrievedClass = str_replace('_','\\',$dbclassname);
+        $retrievedClass = str_replace('_', '\\', $dbclassname);
         $retrievedClass = self::className($retrievedClass);
         return $retrievedClass;
     }
