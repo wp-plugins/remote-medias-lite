@@ -3,7 +3,7 @@ Contributors: loumray
 Tags: youtube, vimeo, vimeo pro, dailymotion, flickr, API, Media Manager, Extension, Integration, direct upload, private videos, remote medias libraries, media explorer, embeds
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,7 +11,7 @@ Remote Media Libraries gives you direct access to all medias accross the web dir
 
 == Description ==
 
-Remote Media Libraries gives you access to the your favorite content of youtube, vimeo, dailymotion, flickr directly into the media manager.
+Remote Media Libraries gives you access to your favorite content of youtube, vimeo, dailymotion, flickr directly into the media manager.
 
 The plugin makes it possible to navigate and manage all your medias from all your favorite remote services directly from wordpress media manager.  
 
@@ -63,7 +63,7 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 
 == Upgrade Notice ==
 = 1.1.1 =
-Better support for remote medias images
+Improved support for remote medias images in Media Manager
 
 = 1.1.0 =
 Added Flickr Basic Support & Improved Remote Libraries Admin Section
