@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: RemoteMediasLite 1.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-27 16:29-0400\n"
+"POT-Creation-Date: 2014-09-29 15:40-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,38 +85,38 @@ msgid ""
 "settings. Only valid libraries are added to the media manager."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:72
 #: src/RemoteMediaExt/AccountPostType.php:73
+#: src/RemoteMediaExt/AccountPostType.php:74
 msgid "Remote library settings updated."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:75
+#: src/RemoteMediaExt/AccountPostType.php:76
 #, php-format
 msgid "Remote library settings restored to revision from %s"
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:76
+#: src/RemoteMediaExt/AccountPostType.php:77
 msgid "Remote library settings published."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:77
+#: src/RemoteMediaExt/AccountPostType.php:78
 msgid "Remote library settings saved."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:78
+#: src/RemoteMediaExt/AccountPostType.php:79
 msgid "Remote library settings submitted."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:80
+#: src/RemoteMediaExt/AccountPostType.php:81
 #, php-format
 msgid "Remote library settings scheduled for: <strong>%1$s</strong>."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:82
+#: src/RemoteMediaExt/AccountPostType.php:83
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:84
+#: src/RemoteMediaExt/AccountPostType.php:85
 msgid "Remote library settings draft updated."
 msgstr ""
 
@@ -160,15 +160,15 @@ msgstr ""
 msgid "Insert the Flickr User NSID for this library"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:16
+#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:14
 msgid "Vimeo Basic"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:38
+#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:36
 msgid "Vimeo User ID"
 msgstr ""
 
-#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:43
+#: src/RemoteMediaExt/Accounts/Vimeo/Service.php:41
 msgid "Insert the Vimeo User ID for this library"
 msgstr ""
 

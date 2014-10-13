@@ -3,7 +3,7 @@ Contributors: loumray
 Tags: youtube, vimeo, vimeo pro, dailymotion, flickr, API, Media Manager, Extension, Integration, direct upload, private videos, remote medias libraries, media explorer, embeds
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,6 +49,9 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 * Instagram Basic Beta support
 
 == Changelog ==
+= 1.1.2 =
+* Fixed a bug causing bad edit links on re-activated Link Manager admin links page
+
 = 1.1.1 =
 * Added Media Manager attachement sidebar for mobile
 * Now using WP native image attachements sidebar for remote images
@@ -92,7 +95,7 @@ Added Flickr Basic Support & Improved Remote Libraries Admin Section
 == Screenshots ==
 1. Adding remote libraries to media manager
 2. Validate your remote libraries settings
-3. Insert remote images with your swanted size setting, just like any other local images.
+3. Insert remote images with your wanted size setting, just like any other local images.
 4. Inserting multiple medium size images at once
 5. Inserting a large size image
 6. Direct Vimeo videos in media manager

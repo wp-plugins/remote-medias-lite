@@ -55,11 +55,11 @@ class AccountPostType extends WPposttype
 
     public function addPostUpdateMsgParam($link)
     {
-        $params = array();
         if (isset($_REQUEST['rmlmsg'])) {
+            $params = array();
             $params['rmlmsg'] = absint($_REQUEST['rmlmsg']);
+            $link = add_query_arg($params, $link);
         }
-        $link = add_query_arg($params, $link);
 
         return $link;
     }
