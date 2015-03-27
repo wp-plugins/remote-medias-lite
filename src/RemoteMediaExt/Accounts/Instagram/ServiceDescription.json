@@ -1,0 +1,26 @@
+{
+    "name": "Instagram",
+    "apiVersion": "Beta",
+    "description": "This access public data from Instagram pages",
+    "operations": {
+      "UserRequest": {
+        "httpMethod": "GET",
+        "uri": "{username}/media/",
+        "summary": "Access the data for a specific user",
+        "responseClass": "WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\Instagram\\Response",
+        "parameters": {
+                "username": {
+                    "type": "string",
+                    "location": "uri",
+                    "description": "Username of the instagram account",
+                    "required": true
+                },
+                "max_id": {
+                    "type": "string",
+                    "location": "query",
+                    "description": "Id of last media. Will return the 20 next media after this id if provided."
+                }
+            }
+      }
+    }
+}
