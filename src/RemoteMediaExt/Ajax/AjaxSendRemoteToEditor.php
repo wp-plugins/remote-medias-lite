@@ -18,13 +18,15 @@ class AjaxSendRemoteToEditor extends WPajaxCall
         $jsattachment = wp_unslash($_POST['attachment']);
         $html = "";
 
-        if (empty($jsattachment['subtype']) ||
+        if (empty($jsattachment['accountId']) ||
             empty($jsattachment['remotedata'])
         ) {
             wp_send_json_error();
         }
 
-        $media = RemoteMediaFactory::create($jsattachment['subtype'], $jsattachment['remotedata']);
+        $accountId = absint($jsattachment['accountId']);
+        
+        $media = RemoteMediaFactory::createFromAccountid($accountId, $jsattachment['remotedata']);
 
         if (is_null($media)) {
             if (empty($jsattachment['url'])) {

@@ -11,7 +11,7 @@ class Service extends AbstractRemoteService
 {
     public function __construct()
     {
-        parent::__construct(__('Vimeo Basic'), 'vimeo');
+        parent::__construct(__('Vimeo', 'remote-medias-lite'), 'vimeo');
 
         $client = Client::factory();
         $this->setClient($client);
@@ -37,7 +37,7 @@ class Service extends AbstractRemoteService
             'type' => 'Text',
             'class' => $this->getSlug(),
             'id' => 'remote_user_id',
-            'name' => 'account_meta['.$this->getSlug().'][remote_user_id]',
+            'name' => 'account_meta['.$this->getSlug().'][vimeo_remote_user_id]',
             'desc' => __("Insert the Vimeo User ID for this library", 'remote-medias-lite'),
         );
         $this->fieldSet->addField($field);
@@ -47,7 +47,7 @@ class Service extends AbstractRemoteService
     {
 
         $params = array(
-            'user_id' => $this->account->get('remote_user_id'),
+            'user_id' => $this->account->get('vimeo_remote_user_id'),
             'request' => 'info'
         );
         $command = $this->client->getCommand('UserRequest', $params);
@@ -60,7 +60,7 @@ class Service extends AbstractRemoteService
     {
 
         $params = array(
-            'user_id' => $this->account->get('remote_user_id'),
+            'user_id' => $this->account->get('vimeo_remote_user_id'),
             'request' => 'info'
         );
         $command = $this->client->getCommand('UserRequest', $params);
@@ -69,10 +69,18 @@ class Service extends AbstractRemoteService
         return $response;
     }
 
+    /*
+    * From https://developer.vimeo.com/apis/simple
+    * Simple API responses include up to 20 items per page.
+    *
+    * By adding the ?page parameter to the URL, you can retrieve up to 3 pages 
+    * of data. If you need more than the maximum of 60 items, you must use the 
+    * New API.
+    */
     public function getUserMedias()
     {
         $params = array(
-            'user_id' => $this->account->get('remote_user_id'),
+            'user_id' => $this->account->get('vimeo_remote_user_id'),
             'request' => 'videos'
         );
         $command = $this->client->getCommand('UserRequest', $params);
@@ -83,6 +91,17 @@ class Service extends AbstractRemoteService
 
     public function getUserAttachments()
     {
+        $perpage = 40;
+        $searchTerm = '';
+
+        if (isset($_POST['query']['posts_per_page'])) {
+            $perpage = absint($_POST['query']['posts_per_page']);
+        }
+        if (isset($_POST['query']['s'])) {
+            $searchTerm = sanitize_text_field($_POST['query']['s']);
+        }
+
+        //Vimeo return 20 max items per page
         $response = $this->GetUserMedias();
         $medias = $response->getAll();
 
@@ -91,8 +110,9 @@ class Service extends AbstractRemoteService
         foreach ($medias as $i => $media) {
             $remoteMedia = new RemoteMedia($media);
             $remoteMedia->setAccount($this->getAccount());
-            $attachments[$i] = $remoteMedia->toMediaManagerAttachment();
+            $attachments[] = $remoteMedia->toMediaManagerAttachment();
         }
+        
         return $attachments;
     }
 }

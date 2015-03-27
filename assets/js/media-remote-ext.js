@@ -62,32 +62,35 @@ wp.media.view.RemoteUploaderInline = wp.media.View.extend({
 		'keyup':  'refresh',
 		'change': 'refresh'
 	},
-	initialize: function()
-	{
+	initialize: function() {
 		_.defaults( this.options, {
 			message: '',
 			status:  true
 		});
 		
-		var state = this.controller.state();
-		var template = state.get('uploadTemplate');
+		var state = this.controller.state(),
+		    template = state.get('uploadTemplate');
 		if (template) {
 			this.template = wp.media.template(template);
 		}
+
+        if ( this.options.status ) {
+            this.views.set( '.upload-inline-status', new wp.media.view.UploaderStatus({
+                controller: this.controller
+            }) );
+        }
 	},
-	
-	render: function()
-	{
-		wp.media.View.prototype.render.apply( this, arguments );
-	    this.refresh();
+	render: function() {
+        wp.media.View.prototype.render.apply( this, arguments );
+        this.refresh();
 	    return this;
 	},
-	
 	refresh: function( event ) {},
     hide: function() {
         this.$el.addClass( 'hidden' );
     }
 });
+
 /**
  * 
  */
@@ -155,6 +158,12 @@ wp.media.model.RemoteQuery = wp.media.model.Query.extend({
 				// this *is* the query.
 				delete props.query;
 
+                // Remove the `remotefilters` property. 
+                delete props.remotefilters;
+
+                // Remove the `uioptions` property. 
+                delete props.uioptions;
+
 				// Fill default args.
 				_.defaults( props, defaults );
 
@@ -201,9 +210,35 @@ wp.media.model.RemoteQuery = wp.media.model.Query.extend({
 			};
 		}())
 });
-// Extends the default MediaFrame.Post view
+
 /**
- * 
+ * wp.media.view.AttachmentFilters.RemoteCustom
+ *
+ */
+wp.media.view.AttachmentFilters.RemoteCustom = wp.media.view.AttachmentFilters.extend({
+    className: 'rml-attachment-filters attachment-filters',
+    createFilters: function() {
+        var filters = {},
+            remotefilters = this.model.get('remotefilters');
+
+        _.each(remotefilters, function(remotefilter) {
+            var filter = {
+                text: remotefilter.text || 'Undefined',
+                props: remotefilter.props || {uploadedTo: null,orderby: 'date',order: 'DESC'},
+                priority: remotefilter.priority || 10
+            }
+            if (remotefilter.slug) {
+                filters[remotefilter.slug] = (filter);
+            }
+            
+        });
+
+        this.filters = filters;
+    }
+});
+
+/**
+ * wp.media.controller.RemoteLibrary
  */
 wp.media.controller.RemoteLibrary = wp.media.controller.Library.extend({
     defaults: {
@@ -215,10 +250,12 @@ wp.media.controller.RemoteLibrary = wp.media.controller.Library.extend({
         content:    'upload',
         router:     'browse',
         menu:       'default',
+        date:       false,
         remote:     true,
         searchable: true,
         filterable: false,
         sortable:   true,
+        autoSelect: true,
 
         // Uses a user setting to override the content mode.
         contentUserSetting: true,
@@ -232,7 +269,6 @@ wp.media.controller.RemoteLibrary = wp.media.controller.Library.extend({
  */
 var oldMediaFrame = wp.media.view.MediaFrame.Post;
 wp.media.view.MediaFrame.Post = oldMediaFrame.extend({
-
     initialize: function() {
         oldMediaFrame.prototype.initialize.apply( this, arguments );
     },
@@ -243,8 +279,8 @@ wp.media.view.MediaFrame.Post = oldMediaFrame.extend({
         var options = this.options;
         var that = this;
     
-        //TODO get service setting template from remote service setting object
-        _.each(wp.media.view.settings.remoteMediaAccounts,function(account) {
+        _.each(wp.media.view.settings.remoteMediaAccounts, function(account) {
+            var serviceSettings = wp.media.view.settings.remoteServiceSettings[account.type] || [];
             that.states.add([
                 new wp.media.controller.RemoteLibrary({
                     id:         'remote-library-'+account.id,
@@ -253,11 +289,13 @@ wp.media.view.MediaFrame.Post = oldMediaFrame.extend({
                     service:    account.type,
                     priority:   30,
                     toolbar:    'main-remote',
-                    uploadTemplate: _.isUndefined( wp.media.view.settings.remoteServiceSettings[account.type] ) ? null : wp.media.view.settings.remoteServiceSettings[account.type].uploadTemplate,
-                    filterable: 'uploaded',
+                    uploadTemplate: serviceSettings.uploadTemplate || '',
+                    filterable: account.filterable || 'uploaded',
                     library:  wp.media.remotequery( _.defaults({
                         type: 'remote',
-                        account_id: account.id
+                        account_id: account.id,
+                        remotefilters: account.filters || [],
+                        uioptions: account.uioptions || []
                     }, options.library ) ),
                     state:    'remote-library-'+account.id,
                     editable:   true,
@@ -276,7 +314,6 @@ wp.media.view.MediaFrame.Post = oldMediaFrame.extend({
         this.on( 'toolbar:create:main-remote', this.createToolbar, this );
         this.on( 'toolbar:render:main-remote', this.mainInsertToolbar, this );
     },
-    
     uploadContent: function() {
         var sectionid = this.state().get('sectionid');
         if (sectionid) {
@@ -290,19 +327,7 @@ wp.media.view.MediaFrame.Post = oldMediaFrame.extend({
         }
     }
 });
-
 wp.media.view.RemoteAttachmentsBrowser = wp.media.view.AttachmentsBrowser.extend({
-    createUploader: function() {
-        this.uploader = new wp.media.view.RemoteUploaderInline({
-            controller: this.controller,
-            status:     false,
-            message:    this.controller.isModeActive( 'grid' ) ? '' : wp.media.view.l10n.noItemsFound,
-            canClose:   this.controller.isModeActive( 'grid' )
-        });
-
-        this.uploader.hide();
-        this.views.add( this.uploader );
-    },
     createSingle: function () {
         var sidebar = this.sidebar,
             single = this.options.selection.single(),
@@ -327,6 +352,17 @@ wp.media.view.RemoteAttachmentsBrowser = wp.media.view.AttachmentsBrowser.extend
         if ( this.model.id === 'remote-library-'+this.model.get('sectionid') ) {
             sidebar.$el.addClass( 'visible' );
         }
+    },
+    createToolbar: function () {
+        wp.media.view.AttachmentsBrowser.prototype.createToolbar.apply( this, arguments );
+
+        if ( 'custom' === this.options.filters ) {
+            this.toolbar.set( 'filters', new wp.media.view.AttachmentFilters.RemoteCustom({
+                controller: this.controller,
+                model:      this.collection.props,
+                priority:   -80
+            }).render() );
+        }
     }
 });
 var oldMediaFrameSelect = wp.media.view.MediaFrame.Select;
@@ -345,6 +381,7 @@ wp.media.view.MediaFrame.Select.prototype.browseRemoteContent = function( conten
                 sortable:   state.get('sortable'),
                 search:     state.get('searchable'),
                 filters:    state.get('filterable'),
+                date:       state.get('date'),
                 display:    state.has('display') ? state.get('display') : state.get('displaySettings'),
                 dragInfo:   state.get('dragInfo'),
 

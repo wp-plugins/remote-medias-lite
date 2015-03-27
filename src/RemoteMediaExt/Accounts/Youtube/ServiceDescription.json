@@ -15,6 +15,21 @@
                     "location": "uri",
                     "description": "The user id you want.",
                     "required": true
+                },
+                "max-results": {
+                    "type": "string",
+                    "location": "query",
+                    "default": 40
+                },
+                "start-index": {
+                    "type": "string",
+                    "location": "query",
+                    "default": 1
+                },
+                "orderby": {
+                    "type": "string",
+                    "location": "query",
+                    "default": "published"
                 }
             }
       },

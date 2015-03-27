@@ -67,4 +67,9 @@ class RemoteServiceFactory
 
         return null;
     }
+
+    public static function getType($class)
+    {
+        return array_search($class, self::$classes);
+    }
 }

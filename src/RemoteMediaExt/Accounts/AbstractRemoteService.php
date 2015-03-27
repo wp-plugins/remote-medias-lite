@@ -24,11 +24,15 @@ abstract class AbstractRemoteService extends WPfeature
     public function setAccountPostType($postType)
     {
         $this->accountPostType = $postType;
+
+        return $this;
     }
 
     public function setClient(AbstractRemoteClient $client)
     {
         $this->client = $client;
+
+        return $this;
     }
 
     public function getClient()
@@ -54,7 +58,12 @@ abstract class AbstractRemoteService extends WPfeature
     public function getFieldSet()
     {
         foreach ($this->fieldSet as $field) {
-            $field->attr('value', esc_attr($this->account->get($this->getSlug().'_'.$field->attr('id'))));
+            $value = $this->account->get($this->getSlug().'_'.$field->attr('id'));
+            $default = $field->attr('default');
+            if (is_null($value) && !is_null($default)) {
+                $value = $default;
+            }
+            $field->attr('value', esc_attr($value));
         }
         return $this->fieldSet;
     }

@@ -104,7 +104,12 @@ abstract class AbstractRemoteMedia
                 'orientation' => $height > $width ? 'portrait' : 'landscape',
             );
         }
-        $sizes['full'] = array('url' => $url);
+        $sizes['full'] = array(
+            'height'      => $height,
+            'width'       => $width,
+            'url'         => $url,
+            'orientation' => $height > $width ? 'portrait' : 'landscape',
+        );
 
         return $sizes;
     }

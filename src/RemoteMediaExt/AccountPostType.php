@@ -45,11 +45,18 @@ class AccountPostType extends WPposttype
 
     public function initAdminNotices()
     {
-        if (isset($_REQUEST['rmlmsg']) &&
-            absint($_REQUEST['rmlmsg']) === 1
-        ) {
-            $notice = new WPadminNotice(__("Could not connect to remote Library. Please verify your remote library settings. Only valid libraries are added to the media manager.", 'remote-medias-lite'), "message error");
-            $notice->register();
+        if (isset($_REQUEST['rmlmsg'])) {
+            switch(absint($_REQUEST['rmlmsg'])) {
+                case 1:
+                    $notice = new WPadminNotice(sprintf(__("Remote library authentication needed. %sAuthenticate now%", 'remote-medias-lite'), '<a class="action_query_test" href="#">', '</a>'), "message error rmlnotice");
+                    $notice->register();
+                    break;
+                case 2:
+                    $notice = new WPadminNotice(__("Could not connect to remote Library. Please verify your remote library settings. Only valid libraries are added to the media manager.", 'remote-medias-lite'), "message error");
+                    $notice->register();
+                    break;
+            }
+            
         }
     }
 

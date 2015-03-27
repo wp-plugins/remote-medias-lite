@@ -27,21 +27,23 @@ class MetaBoxSaveAccount extends WPSaveMetabox
             //if type specific data
             if (is_array($value)) {
                 foreach ($value as $typedata => $typevalue) {
-                    $account->set($key.'_'.$typedata, sanitize_text_field($typevalue));
+                    $account->set($typedata, sanitize_text_field($typevalue));
                 }
             } else {
                 $account->set($key, sanitize_text_field($value));
             }
         }
 
-        $account->set('remote_user_id', sanitize_text_field($_POST['account_meta'][$accountType]['remote_user_id']));
         $account->set('service_class', sanitize_text_field($_POST['account_meta'][$accountType]['service_class']));
+        $account->setServiceFromClass(stripslashes($account->get('service_class')));
 
+        $account->validate();
         $account->save();
 
-        $isValid = $account->get('isValid');
-        if (!$isValid) {
-            $_REQUEST['rmlmsg'] = 1;
+        $isEnabled = $account->isEnabled();
+
+        if (!$isEnabled) {
+            $_REQUEST['rmlmsg'] = $account->getStatus();
         } elseif (isset($_REQUEST['rmlmsg'])) {
             unset($_REQUEST['rmlmsg']);
         }

@@ -31,9 +31,9 @@ class AjaxQueryAttachments extends WPajaxCall
             $return['data'] = $service->getUserAttachments();
 
         } catch (ClientErrorResponseException $e) {
-            $return['success'] = true;
+            $return['success'] = false;
             $return['statuscode'] = $e->getResponse()->getStatusCode();
-            $return['msg']        = $e->getResponse()->getError();
+            $return['msg']        = $e->getResponse()->getMessage();
             wp_send_json($return);
         } catch (CurlException $e) {
             $return['success'] = false;
@@ -42,8 +42,8 @@ class AjaxQueryAttachments extends WPajaxCall
             wp_send_json($return);
         } catch (\Exception $e) {
             $return['success'] = false;
-            $return['statuscode'] = $e->getResponse()->getStatusCode();
-            $return['msg']        = $e->getResponse()->getReasonPhrase();
+            $return['statuscode'] = $e->getCode();
+            $return['msg']        = $e->getMessage();
             wp_send_json($return);
         }
 

@@ -13,7 +13,7 @@ class Service extends AbstractRemoteService
 
     public function __construct()
     {
-        parent::__construct(__('Youtube Basic'), 'youtube');
+        parent::__construct(__('Youtube', 'remote-medias-lite'), 'youtube');
 
         $client = Client::factory();
         $this->setClient($client);
@@ -39,7 +39,7 @@ class Service extends AbstractRemoteService
             'type' => 'Text',
             'class' => $this->getSlug(),
             'id' => 'remote_user_id',
-            'name' => 'account_meta['.$this->getSlug().'][remote_user_id]',
+            'name' => 'account_meta['.$this->getSlug().'][youtube_remote_user_id]',
             'desc' => __("Insert the Youtube User ID for this library", 'remote-medias-lite'),
         );
         $this->fieldSet->addField($field);
@@ -71,7 +71,7 @@ class Service extends AbstractRemoteService
     public function validate()
     {
         $params = array(
-            'user_id' => $this->account->get('remote_user_id'),
+            'user_id' => $this->account->get('youtube_remote_user_id'),
             'request' => 'info'
         );
         
@@ -84,7 +84,7 @@ class Service extends AbstractRemoteService
     public function getUserInfo()
     {
         $params = array(
-            'user_id' => $this->account->get('remote_user_id')
+            'user_id' => $this->account->get('youtube_remote_user_id')
         );
         $command = $this->client->getCommand($this->command, $params);
         $response = $this->client->execute($command);
@@ -92,10 +92,11 @@ class Service extends AbstractRemoteService
         return $response;
     }
 
-    public function getUserMedias()
+    public function getUserMedias($perpage = 40)
     {
         $params = array(
-            'user_id' => $this->account->get('remote_user_id')
+            'user_id' => $this->account->get('youtube_remote_user_id'),
+            'max-results' => $perpage,
         );
         $command = $this->client->getCommand($this->command, $params);
         $response = $this->client->execute($command);
@@ -105,7 +106,17 @@ class Service extends AbstractRemoteService
 
     public function getUserAttachments()
     {
-        $response = $this->GetUserMedias();
+        $perpage = 40;
+        $searchTerm = '';
+
+        if (isset($_POST['query']['posts_per_page'])) {
+            $perpage = absint($_POST['query']['posts_per_page']);
+        }
+        if (isset($_POST['query']['s'])) {
+            $searchTerm = sanitize_text_field($_POST['query']['s']);
+        }
+
+        $response = $this->GetUserMedias($perpage);
         $medias = $response->getAll();
 
         $attachments = array();
@@ -115,6 +126,7 @@ class Service extends AbstractRemoteService
             $remoteMedia->setAccount($this->getAccount());
             $attachments[$i] = $remoteMedia->toMediaManagerAttachment();
         }
+        unset($attachments[count($attachments)-1]);
         return $attachments;
     }
 }

@@ -26,7 +26,7 @@
       },
       "UserVideosRequest": {
         "httpMethod": "GET",
-        "uri": "user/{user_id}/videos?fields={fields}",
+        "uri": "user/{user_id}/videos",
         "summary": "Access the videos for a specific user",
         "class": "WPRemoteMediaExt\\Guzzle\\Service\\Command\\OperationCommand",
         "responseClass": "DailymotionOutput",
@@ -39,9 +39,19 @@
                 },
                 "fields": {
                     "type": "string",
-                    "location": "uri",
+                    "location": "query",
                     "default": "id,title",
                     "description": "Fields list. See http://www.dailymotion.com/doc/api/obj-video.html"
+                },
+                "page": {
+                    "type": "string",
+                    "location": "query",
+                    "default": "1"
+                },
+                "limit": {
+                    "type": "string",
+                    "location": "query",
+                    "default": "40"
                 }
             }
       }

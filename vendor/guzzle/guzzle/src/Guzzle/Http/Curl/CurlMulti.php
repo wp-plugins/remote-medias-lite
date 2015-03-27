@@ -225,6 +225,7 @@ class CurlMulti extends AbstractHasDispatcher implements CurlMultiInterface
             while (($mrc = curl_multi_exec($this->multiHandle, $active)) == CURLM_CALL_MULTI_PERFORM);
             $this->checkCurlResult($mrc);
             $this->processMessages();
+
             if ($active && curl_multi_select($this->multiHandle, $selectTimeout) === -1) {
                 // Perform a usleep if a select returns -1: https://bugs.php.net/bug.php?id=61141
                 usleep(150);

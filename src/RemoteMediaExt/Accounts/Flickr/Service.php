@@ -11,7 +11,7 @@ class Service extends AbstractRemoteService
 {
     public function __construct()
     {
-          parent::__construct(__('Flickr Basic'), 'flickr');
+          parent::__construct(__('Flickr', 'remote-medias-lite'), 'flickr');
 
           $client = Client::factory();
           $this->setClient($client);
@@ -46,7 +46,7 @@ class Service extends AbstractRemoteService
             'class' => $this->getSlug(),
             'id' => 'remote_user_id',
             'placeholder' => 'XXXXXXXX@NXX',
-            'name' => 'account_meta['.$this->getSlug().'][remote_user_id]',
+            'name' => 'account_meta['.$this->getSlug().'][flickr_remote_user_id]',
             'desc' => __("Insert the Flickr User NSID for this library", 'remote-medias-lite'),
         );
         $this->fieldSet->addField($field);
@@ -55,19 +55,19 @@ class Service extends AbstractRemoteService
     public function validate()
     {
         $params = array(
-            'user_id' => $this->account->get('remote_user_id'),
+            'user_id' => $this->account->get('flickr_remote_user_id'),
         );
         $command = $this->client->getCommand('UserPublicPhotos', $params);
         $response = $this->client->execute($command);
-
-        return $command->getResponse()->isSuccessful();
+        
+        return $response->isSuccessful();
     }
 
     public function getUserInfo()
     {
 
         // $params = array(
-        //     'user_id' => $account->get('remote_user_id'),
+        //     'user_id' => $account->get('flickr_remote_user_id'),
         //     'request' => 'info'
         // );
         // $command = $this->client->getCommand('UserRequest',$params);
@@ -76,10 +76,21 @@ class Service extends AbstractRemoteService
         return false;
     }
 
+    /*
+    *
+    * Per Flickr site:
+    *   Why do I only see 20 items in RSS feeds?
+    *   Flickr only shows the latest 20 items in a feed. Because of this, 
+    *   the first time you connect to a feed you will only see the most 
+    *   recent items. But if your RSS reader saves items (as most do) you 
+    *   will see more than 20 as the items build up over time.
+    *
+    * from: https://www.flickr.com/help/website/#109651
+    */
     public function getUserMedias()
     {
         $params = array(
-            'user_id' => $this->account->get('remote_user_id'),
+            'user_id' => $this->account->get('flickr_remote_user_id'),
         );
         $command = $this->client->getCommand('UserPublicPhotos', $params);
         $response = $this->client->execute($command);

@@ -50,6 +50,10 @@ class MediaSettings extends WPfilter
                     'id' => $account->ID,
                     'type' => $remoteAccount->get('type'),
                     'title' => 'Insert '.$account->post_title,
+                    'filterable' => $remoteAccount->get('library_filterable', ''),
+                    'filters' => $remoteAccount->get('library_filters', ''),
+                    'remoteuploadable' => $remoteAccount->get('remoteuploadable', false),
+                    'uioptions' => $remoteAccount->get('uioptions', array())
                 );
             }
         }

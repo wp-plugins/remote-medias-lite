@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'WPRemoteMediaExt\\RemoteMediaExt\\AccountPostType' => $baseDir . '/src/RemoteMediaExt/AccountPostType.php',
+    'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\AbstractAuthService' => $baseDir . '/src/RemoteMediaExt/Accounts/AbstractAuthService.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\AbstractRemoteAccount' => $baseDir . '/src/RemoteMediaExt/Accounts/AbstractRemoteAccount.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\AbstractRemoteClient' => $baseDir . '/src/RemoteMediaExt/Accounts/AbstractRemoteClient.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\AbstractRemoteMedia' => $baseDir . '/src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php',
@@ -17,6 +18,10 @@ return array(
     'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\Flickr\\Client' => $baseDir . '/src/RemoteMediaExt/Accounts/Flickr/Client.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\Flickr\\RemoteMedia' => $baseDir . '/src/RemoteMediaExt/Accounts/Flickr/RemoteMedia.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\Flickr\\Service' => $baseDir . '/src/RemoteMediaExt/Accounts/Flickr/Service.php',
+    'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\Instagram\\Client' => $baseDir . '/src/RemoteMediaExt/Accounts/Instagram/Client.php',
+    'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\Instagram\\RemoteMedia' => $baseDir . '/src/RemoteMediaExt/Accounts/Instagram/RemoteMedia.php',
+    'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\Instagram\\Response' => $baseDir . '/src/RemoteMediaExt/Accounts/Instagram/Response.php',
+    'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\Instagram\\Service' => $baseDir . '/src/RemoteMediaExt/Accounts/Instagram/Service.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\MetaBoxSaveAccount' => $baseDir . '/src/RemoteMediaExt/Accounts/MetaBoxSaveAccount.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\MetaBoxService' => $baseDir . '/src/RemoteMediaExt/Accounts/MetaBoxService.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Accounts\\MetaBoxServiceLoader' => $baseDir . '/src/RemoteMediaExt/Accounts/MetaBoxServiceLoader.php',
@@ -34,6 +39,7 @@ return array(
     'WPRemoteMediaExt\\RemoteMediaExt\\Ajax\\AjaxQueryValidation' => $baseDir . '/src/RemoteMediaExt/Ajax/AjaxQueryValidation.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Ajax\\AjaxSendRemoteToEditor' => $baseDir . '/src/RemoteMediaExt/Ajax/AjaxSendRemoteToEditor.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Ajax\\AjaxUserInfo' => $baseDir . '/src/RemoteMediaExt/Ajax/AjaxUserInfo.php',
+    'WPRemoteMediaExt\\RemoteMediaExt\\Exception\\InvalidAuthParamException' => $baseDir . '/src/RemoteMediaExt/Exception/InvalidAuthParamException.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\FRemoteMediaExt' => $baseDir . '/src/RemoteMediaExt/FRemoteMediaExt.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Library\\MediaArraySettings' => $baseDir . '/src/RemoteMediaExt/Library/MediaArraySettings.php',
     'WPRemoteMediaExt\\RemoteMediaExt\\Library\\MediaLibrarySection' => $baseDir . '/src/RemoteMediaExt/Library/MediaLibrarySection.php',

@@ -2,9 +2,15 @@
 namespace WPRemoteMediaExt\RemoteMediaExt\Accounts;
 
 use WPRemoteMediaExt\Guzzle\Http\Exception\ClientErrorResponseException;
+use WPRemoteMediaExt\RemoteMediaExt\Exception;
 
 abstract class AbstractRemoteAccount
 {
+    const STATUS_UNKNOWN    = 0;
+    const STATUS_AUTHNEEDED = 1;
+    const STATUS_INVALID    = 2;
+    const STATUS_ENABLED    = 10;
+
     protected $localID;
     protected $remoteID;
     protected $type;
@@ -30,6 +36,19 @@ abstract class AbstractRemoteAccount
         $this->fetch();
     }
 
+    public function setId($aid)
+    {
+        $this->localID = $aid;
+
+        return $this;
+    }
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
     public function getId()
     {
         return $this->localID;
@@ -38,6 +57,16 @@ abstract class AbstractRemoteAccount
     public function hasService(AbstractRemoteService $service)
     {
         return is_a($this->service, get_class($service));
+    }
+
+    public function setServiceFromClass($serviceClass)
+    {
+        $serviceInstance = RemoteServiceFactory::create($serviceClass);
+        if (!is_null($serviceInstance) &&
+            $serviceInstance instanceof AbstractRemoteService
+        ) {
+            $this->setService($serviceInstance);
+        }
     }
 
     public function fetch()
@@ -51,8 +80,7 @@ abstract class AbstractRemoteAccount
 
             if (!empty($serviceClass)) {
                 $serviceClass = RemoteServiceFactory::retrieveClassName($serviceClass);
-
-                $this->setService(RemoteServiceFactory::create($serviceClass));
+                $this->setServiceFromClass($serviceClass);
             }
         }
 
@@ -60,12 +88,12 @@ abstract class AbstractRemoteAccount
     }
 
     /*
-     * return false on failure true if success
+     * @return false on failure or no change update true on update
+     *
      */
     public function save()
     {
-        $this->validate();
-
+        $this->set('service_class', RemoteServiceFactory::getDbClassName(RemoteServiceFactory::getClass($this->type)));
         $return = update_post_meta($this->localID, 'remote_attr', $this->attributes);
         $return = update_post_meta($this->localID, 'remote_account_type', $this->type) && $return;
 
@@ -81,12 +109,19 @@ abstract class AbstractRemoteAccount
         return $this;
     }
 
+    public function getServiceNamespace()
+    {
+        $serviceclass = get_class($this->service);
+        return substr($serviceclass, 0, strrpos($serviceclass, '\\'));
+
+    }
+    
     public function getService()
     {
         return $this->service;
     }
 
-    public function get($name)
+    public function get($name, $default = null)
     {
         if ($name === null) {
             return $this->attributes;
@@ -96,7 +131,7 @@ abstract class AbstractRemoteAccount
             return $this->type;
         }
 
-        return isset($this->attributes[$name]) ? $this->attributes[$name] : null;
+        return isset($this->attributes[$name]) ? $this->attributes[$name] : $default;
     }
 
     public function destroy($name)
@@ -110,7 +145,6 @@ abstract class AbstractRemoteAccount
     {
         if ($name == 'remote_account_type') {
             $this->type = $value;
-            $this->set('service_class', RemoteServiceFactory::getDbClassName(RemoteServiceFactory::getClass($this->type)));
             return $this;
         }
         $this->attributes[$name] = $value;
@@ -140,38 +174,100 @@ abstract class AbstractRemoteAccount
         return false;
     }
 
+    public function isEnabled()
+    {
+        $isEnabled = $this->get('isEnabled', false);
+        if ($isEnabled === true) {
+            return true;
+        }
+
+        $isValid = $this->get('isValid', false);
+        $isAuthNeeded = $this->isAuthNeeded();
+        if ($isAuthNeeded === false &&
+            $isValid === true
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isAuthNeeded()
+    {
+        if ($this->service instanceof AbstractAuthService) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getAuthUrl()
+    {
+        if (!$this->isAuthNeeded() ||
+            !$this->service instanceof AbstractAuthService
+        ) {
+            return '';
+        }
+
+        return $this->service->getAuthUrl();
+    }
+
+    public function getStatusDisplay()
+    {
+        $status = $this->getStatus();
+        switch ($status) {
+            case self::STATUS_ENABLED:
+                return __('Enabled', 'remote-medias-lite');
+            case self::STATUS_AUTHNEEDED:
+                return __('Authenticate now', 'remote-medias-lite');
+            case self::STATUS_INVALID:
+                return __('Invalid', 'remote-medias-lite');
+            default:
+                return __('Unknown', 'remote-medias-lite');
+        }
+
+        return __('Unknown', 'remote-medias-lite');
+    }
+
+    public function getStatus()
+    {
+        if ($this->isEnabled()) {
+            return self::STATUS_ENABLED;
+        }
+
+        if ($this->isAuthNeeded()) {
+            return self::STATUS_AUTHNEEDED;
+        }
+
+        $isValid = $this->get('isValid');
+        if ($isValid === false) {
+            return self::STATUS_INVALID;
+        }
+        return self::STATUS_UNKNOWN;
+    }
+
+    /*
+    * @return 1 on validate, 0 on invalid params, -1 on error
+    */
     public function validate()
     {
-        if (!($this->service instanceof AbstractRemoteService)) {
-            return false;
-        }
+        $isValid = 0;
+        $this->set('isValid', false);
 
-        $return = array();
-        $return['validate'] = false;
-        
         try {
-            $return['validate'] = $this->service->validate($this);
+            $isServiceValid = $this->service->validate();
+            if ($isServiceValid === true) {
+                $this->set('isValid', true);
+                $isValid = 1;
+            }
         } catch (ClientErrorResponseException $e) {
-            $return['error'] = true;
-            $return['statuscode'] = $e->getResponse()->getStatusCode();
-            $return['msg']        = $e->getResponse()->getReasonPhrase();
+            $isValid = 0;
+        } catch (Exception\InvalidAuthParamException $e) {
+            $isValid = 0;
         } catch (\Exception $e) {
-            $return['error'] = true;
-            $return['statuscode'] = $e->getCode();
-            $return['msg']        = $e->getMessage();
+            error_log('RML error occured validating account '.$this->getId().': '.$e->getMessage());
+            $isValid = -1;
         }
 
-        $lastValidQuery = null;
-
-        if ($return['validate'] === true) {
-            $lastValidQuery =  $this->get('remote_user_id');
-            $this->set('isValid', true);
-        } else {
-            $this->set('isValid', false);
-        }
-
-        $this->set('last_valid_query', $lastValidQuery);
-
-        return $return['validate'];
+        return $isValid;
     }
 }

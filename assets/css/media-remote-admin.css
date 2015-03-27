@@ -82,3 +82,51 @@ ul.wpform-fieldset li:last-child {
 .rml-status-field.notvalid {
     color: #a00;
 }
+
+.rmlnotice {
+    border-color: #ffba00 !important;
+}
+.media-frame select.rml-attachment-filters.attachment-filters {
+    max-width: 100%;
+    margin-right: 20px;
+}
+.ocsmorebanner {
+    display: none;
+    z-index: 999999;
+    background: rgba(0,0,0,0.8);
+    position: absolute;
+    margin: 0px 0 50px 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.ocsbannerwrapper{
+    position: relative;
+    width: 100%;
+  height: 100%;
+}
+.ocsbannercontent{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width: 50%;
+    margin-top:-75px;
+    margin-left: -25%;
+}
+.ocsbannerwrapper p{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+}
+a.ocsbannerdismiss{
+    color: #ffffff;
+    margin-top:20px;
+    display: inline-block;
+    font-size:16px;
+    text-decoration: none;
+}
+a.ocsbannerdismiss:hover{
+    text-decoration: underline;
+    color: #ffffff;
+}

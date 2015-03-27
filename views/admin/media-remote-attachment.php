@@ -1,51 +1,49 @@
 <?php
 ?>
 <script type="text/html" id="tmpl-attachment-remote">
-  <div class="attachment-preview js--select-attachment type-{{ data.type }} subtype-{{ data.subtype }} {{ data.orientation }}">
-      <# if ( data.uploading ) { #>
-				<div class="media-progress-bar"><div></div></div>
-			<# } else if ( 'image' === data.type ) { #>
-				<div class="thumbnail">
-					<div class="centered">
-						<img src="{{ data.size.url }}" draggable="false" />
-					</div>
-				</div>
-			<# } else if ('remote' === data.type) { #>
-				<div class="thumbnail">
-					<div class="centered">
-						<img src="{{ data.icon }}" draggable="false" />
-					</div>
+ 	<div class="attachment-preview js--select-attachment type-{{ data.type }} subtype-{{ data.subtype }} {{ data.orientation }}">
+		<div class="thumbnail">
+			<# if ( data.uploading ) { #>
+				<div class="media-progress-bar"><div style="width: {{ data.percent }}%"></div></div>
+			<# } else if ( 'image' === data.type && data.sizes ) { #>
+				<div class="centered">
+					<img src="{{ data.size.url }}" draggable="false" alt="" />
 				</div>
 			<# } else { #>
-				<img src="{{ data.icon }}" class="icon" draggable="false" />
+				<div class="centered">
+					<# if ( data.image && data.image.src && data.image.src !== data.icon ) { #>
+						<img src="{{ data.image.src }}" class="thumbnail" draggable="false" />
+					<# } else { #>
+						<img src="{{ data.icon }}" class="icon" draggable="false" />
+					<# } #>
+				</div>
 				<div class="filename">
 					<div>{{ data.filename }}</div>
 				</div>
 			<# } #>
-
-			<# if ( data.buttons.close ) { #>
-				<a class="close media-modal-icon" href="#" title="<?php _e('Remove'); ?>"></a>
-			<# } #>
-
-			<# if ( data.buttons.check ) { #>
-				<a class="check" href="#" title="<?php _e('Deselect'); ?>"><div class="media-modal-icon"></div></a>
-			<# } #>
 		</div>
-		<#
-		var maybeReadOnly = data.can.save || data.allowLocalEdits ? '' : 'readonly';
-		if ( data.describe ) { #>
-			<# if ( 'image' === data.type ) { #>
-				<input type="text" value="{{ data.caption }}" class="describe" data-setting="caption"
-					placeholder="<?php esc_attr_e('Caption this image&hellip;'); ?>" {{ maybeReadOnly }} />
-			<# } else { #>
-				<input type="text" value="{{ data.title }}" class="describe" data-setting="title"
-					<# if ( 'video' === data.type ) { #>
-						placeholder="<?php esc_attr_e('Describe this video&hellip;'); ?>"
-					<# } else if ( 'audio' === data.type ) { #>
-						placeholder="<?php esc_attr_e('Describe this audio file&hellip;'); ?>"
-					<# } else { #>
-						placeholder="<?php esc_attr_e('Describe this media file&hellip;'); ?>"
-					<# } #> {{ maybeReadOnly }} />
-			<# } #>
+		<# if ( data.buttons.close ) { #>
+			<a class="close media-modal-icon" href="#" title="<?php esc_attr_e('Remove'); ?>"></a>
 		<# } #>
+	</div>
+	<# if ( data.buttons.check ) { #>
+		<a class="check" href="#" title="<?php esc_attr_e('Deselect'); ?>" tabindex="-1"><div class="media-modal-icon"></div></a>
+	<# } #>
+	<#
+	var maybeReadOnly = data.can.save || data.allowLocalEdits ? '' : 'readonly';
+	if ( data.describe ) {
+		if ( 'image' === data.type ) { #>
+			<input type="text" value="{{ data.caption }}" class="describe" data-setting="caption"
+				placeholder="<?php esc_attr_e('Caption this image&hellip;'); ?>" {{ maybeReadOnly }} />
+		<# } else { #>
+			<input type="text" value="{{ data.title }}" class="describe" data-setting="title"
+				<# if ( 'video' === data.type ) { #>
+					placeholder="<?php esc_attr_e('Describe this video&hellip;'); ?>"
+				<# } else if ( 'audio' === data.type ) { #>
+					placeholder="<?php esc_attr_e('Describe this audio file&hellip;'); ?>"
+				<# } else { #>
+					placeholder="<?php esc_attr_e('Describe this media file&hellip;'); ?>"
+				<# } #> {{ maybeReadOnly }} />
+		<# }
+	} #>
 </script>

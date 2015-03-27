@@ -16,7 +16,6 @@ use WPRemoteMediaExt\RemoteMediaExt\Ajax\AjaxUserInfo;
 use WPRemoteMediaExt\RemoteMediaExt\Library\MediaArraySettings;
 use WPRemoteMediaExt\RemoteMediaExt\Library\MediaTemplate;
 use WPRemoteMediaExt\RemoteMediaExt\Library\MediaSettings;
-use WPRemoteMediaExt\RemoteMediaExt\Library\MediaLibrarySection;
 
 use WPRemoteMediaExt\WPCore\admin\WPfeaturePointer;
 use WPRemoteMediaExt\WPCore\admin\WPfeaturePointerLoader;
@@ -32,7 +31,7 @@ class FRemoteMediaExt extends WPfeature
 {
     public static $instance;
 
-    protected $version = '1.1.2';
+    protected $version = '1.2.0';
     protected $accountPostType;
     protected $remoteServices = array();
 
@@ -90,6 +89,13 @@ class FRemoteMediaExt extends WPfeature
         $this->hook($service);
         $this->addRemoteService($service);
 
+        //Hook Instagram Support
+        $service = new RemoteService\Instagram\Service();
+        $service->setBasePath($this->getBasePath());
+        $service->setAccountPostType($this->accountPostType);
+        $this->hook($service);
+        $this->addRemoteService($service);
+
         //Hook ajax service for accounts validation
         $this->ajaxQueryValidation = new AjaxQueryValidation();
         $this->hook($this->ajaxQueryValidation);
@@ -122,6 +128,8 @@ class FRemoteMediaExt extends WPfeature
         $this->hook(new MediaSettings('remoteMediaAccounts'));
 
         $this->hook(new MediaTemplate(new View($this->getViewsPath().'admin/media-remote-attachment.php')));
+        $this->hook(new MediaTemplate(new View($this->getViewsPath().'admin/media-friendly-banner.php')));
+        $this->addScript(new WPscriptAdmin(array('post.php' => array(), 'post-new.php' => array()), 'jquery-cookie', $this->getJsUrl().'jquery-cookie.min.js', $this->getJsUrl().'jquery-cookie.js', array('jquery'), $this->version));
         $this->addScript(new WPscriptAdmin(array('post.php' => array(), 'post-new.php' => array()), 'media-remote-ext', $this->getJsUrl().'media-remote-ext.min.js', $this->getJsUrl().'media-remote-ext.js', array('media-editor','media-views'), $this->version));
         $this->addStyle(new WPstyleAdmin(array(), 'media-remote-admin-css', $this->getCssUrl().'media-remote-admin.min.css', $this->getCssUrl().'media-remote-admin.css', array(), $this->version));
     }
@@ -184,8 +192,7 @@ class FRemoteMediaExt extends WPfeature
 
         $metabox = new MetaBoxService(
             new View(
-                $this->getViewsPath().'admin/metaboxes/basic-settings.php',
-                array('services' => $this->getRemoteServices())
+                $this->getViewsPath().'admin/metaboxes/basic-settings.php'
             ),
             'rml_account_settings',
             __('Account Settings', 'remote-medias-lite'),

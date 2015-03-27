@@ -1,40 +1,64 @@
-=== Remote Media Libraries ===
+﻿=== Remote Media Libraries ===
 Contributors: loumray
-Tags: youtube, vimeo, vimeo pro, dailymotion, flickr, API, Media Manager, Extension, Integration, direct upload, private videos, remote medias libraries, media explorer, embeds
+Tags: youtube, vimeo, vimeo pro, dailymotion, flickr, API, Media Manager, Media Library Extension, Integration, direct upload, private videos, remote medias libraries, media explorer, embeded
 Requires at least: 3.5
-Tested up to: 4.0
+Tested up to: 4.2-beta1
 Stable tag: 1.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Remote Media Libraries gives you direct access to all medias accross the web directly from the Media Manager.
+Remote Media Libraries (RML) gives you access to third parties media libraries directly from the Wordpress Media Library.
 
 == Description ==
 
-Remote Media Libraries gives you access to your favorite content of youtube, vimeo, dailymotion, flickr directly into the media manager.
+Remote Media Libraries (RML) gives you access to your favorite content from Youtube, Vimeo, Dailymotion, Flickr and Instagram directly into the media library. The RML plugin makes it possible to navigate, search, and inserts remote media into you posts and pages. This will increased your page load time and also save on server bandwidth. 
 
-The plugin makes it possible to navigate and manage all your medias from all your favorite remote services directly from wordpress media manager.  
+You can create as many account as you want and they will show in the left sidebar of the Wordpress media library.  
 
-A LOT of service will be added for direct integration. Send us you favorite service and we will integrate it FAST.
-
-Also, it is possible to download cheaps add-ons that will let you direct upload your media files to 3rd party services and update your media content directly from your wordpress admin panel.
-
-= Supported Services =
+= Currently Integrated Services =
 
 * Youtube
 * Vimeo
 * Dailymotion
 * Flickr
+* Instagram
+
+= Vote for the next integration =
+
+We need your feedback to know which will be the next integration added to RML. Please take 1 minute to fill out this quick survey:
+
+<a href="http://onecodeshop.com/vote-for-the-next-integration/">Next integration survey »</a>
+
+= RML Pro versions =
+
+RML Pro versions let you access premium features:
+
+* Albums/lists filtering
+* Unlimited amount of media in the library
+* Secure private content
+* Upload from Wordpress media library to your remote service
+* And more ...
+
+More informations on RML pro versions:
+
+* <a href="http://onecodeshop.com/youtube-pro-remote-media-libraries/">RML Youtube Pro</a>
+* <a href="http://onecodeshop.com/flickr-pro-remote-media-libraries/">RML Flickr Pro</a>
+* <a href="http://onecodeshop.com/instagram-pro-remote-media-libraries/">RML Instagram Pro</a>
+
 
 = Upcoming Services =
 
-* Vimeo Pro (make your exclusive videos private right from WP admin)
-* Instagram
+* Amazon S3 Services
+* Amazon Cloud Front
+* Vimeo Pro (Upload capability)
+* DropBox
 * Tumblr
 * Photobucket
+* Facebook
 * Twitter
-* Amazon S3 Services
 * Cloud files
+* Pixabay
+* <a href="http://onecodeshop.com/vote-for-the-next-integration/">Vote for the next integration »</a>
 
 = Follow us! =
 
@@ -42,13 +66,21 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 * <a href="https://facebook.com/onecodeshop">facebook.com/onecodeshop</a>
 * <a href="https://twitter.com/onecodeshop">twitter.com/onecodeshop</a>
 
-= Planned for Next Release =
+= Buy us a coffee! =
 
-* Youtube Search & public feeds
-* Flickr Latest public feed and favorites 
-* Instagram Basic Beta support
+We do work hard to bring you the best of the RML plugin. As normal programmers and designers we live on coffee, support us and buy us a coffee, you will make us happy :) Humm coffee ...
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=P9N89H4AJ5PCL">Buy us a coffee »</a>
 
 == Changelog ==
+= 1.2.0 =
+* Initial support of instagram
+* Update media library attachment template in media library to match WP behavior for local medias.
+* Added missing image size in  display settings
+* Fixed a bug that occured in the case that Youtube do not return any author
+* Makes plugin main script parsable by PHP 5.2 to fail gracefully and display a notice.
+* Extend plugin to support APIs that need authentication
+
 = 1.1.2 =
 * Fixed a bug causing bad edit links on re-activated Link Manager admin links page
 
@@ -65,6 +97,9 @@ Also, it is possible to download cheaps add-ons that will let you direct upload 
 * Initial Release.
 
 == Upgrade Notice ==
+= 1.2.0 =
+This version add instagram support and multiple fixes.
+
 = 1.1.1 =
 Improved support for remote medias images in Media Manager
 
@@ -76,6 +111,7 @@ Added Flickr Basic Support & Improved Remote Libraries Admin Section
 
 * WordPress 3.5 or greater
 * PHP version 5.3.3 or greater
+* PHP cURl module intsalled
 
 = Manual installation =
 

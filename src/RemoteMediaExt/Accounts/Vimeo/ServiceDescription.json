@@ -1,7 +1,7 @@
 {
     "name": "Vimeo",
     "apiVersion": "2",
-    "description": "This API allows to connect with Vimeo web services",
+    "description": "This API allows to connect with Vimeo web services. From https://developer.vimeo.com/apis/simple",
     "operations": {
       "UserRequest": {
         "httpMethod": "GET",
@@ -21,6 +21,10 @@
                     "location": "uri",
                     "description": "The data you want. Could be: info,videos,likes,appears_in,all_videos,subscriptions,albums,channels,groups",
                     "required": true
+                },
+                "page": {
+                    "type": "integer",
+                    "location": "query"
                 }
             }
       }

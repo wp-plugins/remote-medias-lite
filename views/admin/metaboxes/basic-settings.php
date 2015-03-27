@@ -4,8 +4,10 @@
 //$post
 //$metabox
 //$account
-//$services
 echo $hidden_nonce;
+
+$rml = \WPRemoteMediaExt\RemoteMediaExt\FRemoteMediaExt::getInstance();
+$services = $rml->getRemoteServices();
 
 foreach ($services as $service) {
     ?>
@@ -21,4 +23,3 @@ foreach ($services as $service) {
     </div>
     <?php
 }
-?>

@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: RemoteMediasLite 1.1.1\n"
+"Project-Id-Version: remote-medias-lite 1.1.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-29 15:40-0400\n"
+"POT-Creation-Date: 2015-03-26 22:35-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: remote-medias-libs.php:41
+#: bootstrap.php:33
 #, php-format
 msgid ""
 "%s <strong>Requirements failed.</strong> WP version must <strong>at least "
 "%s</strong>. You are using version "
 msgstr ""
 
-#: remote-medias-libs.php:43
+#: bootstrap.php:35 remote-medias-libs.php:13
 #, php-format
 msgid ""
 "%s <strong>Requirements failed.</strong> PHP version must <strong>at least "
@@ -80,44 +80,69 @@ msgid "No Remote Library found in Trash"
 msgstr ""
 
 #: src/RemoteMediaExt/AccountPostType.php:51
+msgid "Remote library authentication needed. %sAuthenticate now%"
+msgstr ""
+
+#: src/RemoteMediaExt/AccountPostType.php:55
 msgid ""
 "Could not connect to remote Library. Please verify your remote library "
 "settings. Only valid libraries are added to the media manager."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:73
-#: src/RemoteMediaExt/AccountPostType.php:74
+#: src/RemoteMediaExt/AccountPostType.php:80
+#: src/RemoteMediaExt/AccountPostType.php:81
 msgid "Remote library settings updated."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:76
+#: src/RemoteMediaExt/AccountPostType.php:83
 #, php-format
 msgid "Remote library settings restored to revision from %s"
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:77
+#: src/RemoteMediaExt/AccountPostType.php:84
 msgid "Remote library settings published."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:78
+#: src/RemoteMediaExt/AccountPostType.php:85
 msgid "Remote library settings saved."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:79
+#: src/RemoteMediaExt/AccountPostType.php:86
 msgid "Remote library settings submitted."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:81
+#: src/RemoteMediaExt/AccountPostType.php:88
 #, php-format
 msgid "Remote library settings scheduled for: <strong>%1$s</strong>."
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:83
+#. //php.net/date
+#: src/RemoteMediaExt/AccountPostType.php:90
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#: src/RemoteMediaExt/AccountPostType.php:85
+#: src/RemoteMediaExt/AccountPostType.php:92
 msgid "Remote library settings draft updated."
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/AbstractRemoteAccount.php:219
+#: src/RemoteMediaExt/Ajax/AjaxQueryValidation.php:25
+msgid "Enabled"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/AbstractRemoteAccount.php:221
+msgid "Authenticate now"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/AbstractRemoteAccount.php:223
+#: src/RemoteMediaExt/Ajax/AjaxQueryValidation.php:23
+msgid "Invalid"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/AbstractRemoteAccount.php:225
+#: src/RemoteMediaExt/Accounts/AbstractRemoteAccount.php:228
+#: src/RemoteMediaExt/Ajax/AjaxQueryValidation.php:22
+msgid "Unknown"
 msgstr ""
 
 #: src/RemoteMediaExt/Accounts/AbstractRemoteMedia.php:87
@@ -137,7 +162,7 @@ msgid "Full Size"
 msgstr ""
 
 #: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:14
-msgid "Dailymotion Basic"
+msgid "Dailymotion"
 msgstr ""
 
 #: src/RemoteMediaExt/Accounts/Dailymotion/Service.php:36
@@ -149,7 +174,7 @@ msgid "Insert the Dailymotion User ID for this library"
 msgstr ""
 
 #: src/RemoteMediaExt/Accounts/Flickr/Service.php:14
-msgid "Flickr Basic"
+msgid "Flickr"
 msgstr ""
 
 #: src/RemoteMediaExt/Accounts/Flickr/Service.php:44
@@ -160,8 +185,20 @@ msgstr ""
 msgid "Insert the Flickr User NSID for this library"
 msgstr ""
 
+#: src/RemoteMediaExt/Accounts/Instagram/Service.php:14
+msgid "Instagram"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Instagram/Service.php:36
+msgid "Instagram Username"
+msgstr ""
+
+#: src/RemoteMediaExt/Accounts/Instagram/Service.php:41
+msgid "Insert the Instagram user for this library"
+msgstr ""
+
 #: src/RemoteMediaExt/Accounts/Vimeo/Service.php:14
-msgid "Vimeo Basic"
+msgid "Vimeo"
 msgstr ""
 
 #: src/RemoteMediaExt/Accounts/Vimeo/Service.php:36
@@ -173,7 +210,7 @@ msgid "Insert the Vimeo User ID for this library"
 msgstr ""
 
 #: src/RemoteMediaExt/Accounts/Youtube/Service.php:16
-msgid "Youtube Basic"
+msgid "Youtube"
 msgstr ""
 
 #: src/RemoteMediaExt/Accounts/Youtube/Service.php:38
@@ -184,45 +221,61 @@ msgstr ""
 msgid "Insert the Youtube User ID for this library"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:139
+#: src/RemoteMediaExt/Ajax/AjaxQueryValidation.php:24
+msgid "Authenticating"
+msgstr ""
+
+#: src/RemoteMediaExt/Ajax/AjaxQueryValidation.php:26
+msgid "Authenticate Now"
+msgstr ""
+
+#: src/RemoteMediaExt/Ajax/AjaxQueryValidation.php:27
+msgid "Failed Auth"
+msgstr ""
+
+#: src/RemoteMediaExt/Ajax/AjaxQueryValidation.php:29
+msgid "Re-authenticate"
+msgstr ""
+
+#: src/RemoteMediaExt/FRemoteMediaExt.php:147
 msgid "New Menu Added"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:140
+#: src/RemoteMediaExt/FRemoteMediaExt.php:148
 #, php-format
 msgid ""
 "Add %sremote medias accounts%s here and access any medias directly from your "
 "media manager!"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:151
+#: src/RemoteMediaExt/FRemoteMediaExt.php:159
 msgid "Media Manager Extended"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:152
+#: src/RemoteMediaExt/FRemoteMediaExt.php:160
 #, php-format
 msgid ""
 "You can now access medias of %sremote accounts%s directly from the media "
 "manager. Check it out!"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:178
+#: src/RemoteMediaExt/FRemoteMediaExt.php:186
 msgid "Service Selection"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:191
+#: src/RemoteMediaExt/FRemoteMediaExt.php:198
 msgid "Account Settings"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:202
+#: src/RemoteMediaExt/FRemoteMediaExt.php:209
 msgid "Status & Actions"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:220
+#: src/RemoteMediaExt/FRemoteMediaExt.php:227
 msgid "Remote Service"
 msgstr ""
 
-#: src/RemoteMediaExt/FRemoteMediaExt.php:227
+#: src/RemoteMediaExt/FRemoteMediaExt.php:234
 msgid "Choose the type of service you want to connect."
 msgstr ""
 
@@ -261,27 +314,27 @@ msgid "Select"
 msgstr ""
 
 #: vendor/loumray/wpforms/src/UploadLibrary.php:129
-#: views/admin/media-remote-attachment.php:27
+#: views/admin/media-remote-attachment.php:26
 msgid "Remove"
 msgstr ""
 
-#: views/admin/media-remote-attachment.php:31
+#: views/admin/media-remote-attachment.php:30
 msgid "Deselect"
 msgstr ""
 
-#: views/admin/media-remote-attachment.php:39
+#: views/admin/media-remote-attachment.php:37
 msgid "Caption this image&hellip;"
 msgstr ""
 
-#: views/admin/media-remote-attachment.php:43
+#: views/admin/media-remote-attachment.php:41
 msgid "Describe this video&hellip;"
 msgstr ""
 
-#: views/admin/media-remote-attachment.php:45
+#: views/admin/media-remote-attachment.php:43
 msgid "Describe this audio file&hellip;"
 msgstr ""
 
-#: views/admin/media-remote-attachment.php:47
+#: views/admin/media-remote-attachment.php:45
 msgid "Describe this media file&hellip;"
 msgstr ""
 
@@ -311,6 +364,18 @@ msgid ""
 "Add our remote media pro extension for Flickr to unlock premium features."
 msgstr ""
 
+#: views/admin/media-upload-instagram.php:11
+msgid "Get unlimited number of pictures with RML Instagram Pro"
+msgstr ""
+
+#: views/admin/media-upload-instagram.php:13
+msgid "Get the extension and unlock premium features &raquo;"
+msgstr ""
+
+#: views/admin/media-upload-instagram.php:16
+msgid "Add our RML Instagram Pro extension to unlock premium features."
+msgstr ""
+
 #: views/admin/media-upload-vimeo.php:11
 msgid "Upload videos directly to your Vimeo account"
 msgstr ""
@@ -329,22 +394,10 @@ msgid ""
 "Add our Remote Media PRO extension for Youtube to unlock premium features."
 msgstr ""
 
-#: views/admin/metaboxes/status-actions.php:5
+#: views/admin/metaboxes/status-actions.php:9
 msgid "Account Status:"
 msgstr ""
 
-#: views/admin/metaboxes/status-actions.php:29
-msgid "Working"
-msgstr ""
-
-#: views/admin/metaboxes/status-actions.php:30
-msgid "Unknown"
-msgstr ""
-
-#: views/admin/metaboxes/status-actions.php:31
-msgid "Invalid"
-msgstr ""
-
-#: views/admin/metaboxes/status-actions.php:39
+#: views/admin/metaboxes/status-actions.php:27
 msgid "Validate"
 msgstr ""

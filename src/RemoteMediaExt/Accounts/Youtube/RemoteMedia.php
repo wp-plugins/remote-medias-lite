@@ -25,7 +25,6 @@ class RemoteMedia extends AbstractRemoteMedia
     public function toMediaManagerAttachment()
     {
         
-
         $attachment = array_merge(
             $this->getBasicAttachment(),
             array(
@@ -35,7 +34,7 @@ class RemoteMedia extends AbstractRemoteMedia
                 'url'         => $this->metadata['url'],
                 'link'        => $this->metadata['url'],
                 'alt'         => '',
-                'author'      => $this->metadata['author']['name'],
+                'author'      => isset($this->metadata['author']) && isset($this->metadata['author']['name']) ? $this->metadata['author']['name'] : '',
                 'description' => $this->metadata['content'],
                 'caption'     => "", //limit word count
                 'name'        => $this->metadata['title'],
