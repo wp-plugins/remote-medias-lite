@@ -128,8 +128,8 @@ class FRemoteMediaExt extends WPfeature
         $this->hook(new MediaSettings('remoteMediaAccounts'));
 
         $this->hook(new MediaTemplate(new View($this->getViewsPath().'admin/media-remote-attachment.php')));
-        $this->hook(new MediaTemplate(new View($this->getViewsPath().'admin/media-friendly-banner.php')));
-        $this->addScript(new WPscriptAdmin(array('post.php' => array(), 'post-new.php' => array()), 'jquery-cookie', $this->getJsUrl().'jquery-cookie.min.js', $this->getJsUrl().'jquery-cookie.js', array('jquery'), $this->version));
+        // $this->hook(new MediaTemplate(new View($this->getViewsPath().'admin/media-friendly-banner.php')));
+        // $this->addScript(new WPscriptAdmin(array('post.php' => array(), 'post-new.php' => array()), 'jquery-cookie', $this->getJsUrl().'jquery-cookie.min.js', $this->getJsUrl().'jquery-cookie.js', array('jquery'), $this->version));
         $this->addScript(new WPscriptAdmin(array('post.php' => array(), 'post-new.php' => array()), 'media-remote-ext', $this->getJsUrl().'media-remote-ext.min.js', $this->getJsUrl().'media-remote-ext.js', array('media-editor','media-views'), $this->version));
         $this->addStyle(new WPstyleAdmin(array(), 'media-remote-admin-css', $this->getCssUrl().'media-remote-admin.min.css', $this->getCssUrl().'media-remote-admin.css', array(), $this->version));
     }
