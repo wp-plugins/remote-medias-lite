@@ -3,7 +3,7 @@ Contributors: loumray
 Tags: youtube, vimeo, vimeo pro, dailymotion, flickr, API, Media Manager, Media Library Extension, Integration, direct upload, private videos, remote medias libraries, media explorer, embeded
 Requires at least: 3.5
 Tested up to: 4.2-beta1
-Stable tag: 1.1.2
+Stable tag: 1.2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
